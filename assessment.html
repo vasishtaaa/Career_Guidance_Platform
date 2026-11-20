@@ -8,6 +8,7 @@
   
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/grid-layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -62,8 +63,8 @@
         <h2 id="quiz-question-title" class="quiz-question-title">Loading Question...</h2>
         <p id="quiz-question-subtitle" class="quiz-question-subtitle"></p>
 
-        <!-- Options injected dynamically -->
-        <div id="quiz-options-list" class="options-grid" role="radiogroup" aria-labelledby="quiz-question-title"></div>
+        <!-- Options injected dynamically into modern Card Grid -->
+        <div id="quiz-options-list" class="quiz-options-card-grid" role="radiogroup" aria-labelledby="quiz-question-title"></div>
 
         <!-- Navigation Controls -->
         <div class="quiz-nav-btns">
@@ -113,7 +114,7 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-bottom" style="border: none; padding-top: 0;">
-      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with TypeScript & CSS Grid.</p>
       <a href="index.html" class="btn btn-outline btn-sm">&larr; Back to Home</a>
     </div>
   </footer>

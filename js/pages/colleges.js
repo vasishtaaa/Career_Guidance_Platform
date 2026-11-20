@@ -1,131 +1,120 @@
-/**
- * Global College & University Directory Controller
- * Dynamically re-renders tuition rates when user changes currency.
- */
-
 import { initNavigation } from "../modules/navigation.js";
 import { COLLEGES_DATA } from "../data/colleges.js";
 import { formatTuition, getActiveCurrency } from "../modules/currency.js";
-
 let activeCountry = "All";
 let activeDiscipline = "All";
 let searchQuery = "";
-
 document.addEventListener("DOMContentLoaded", () => {
-  initNavigation();
-  initURLParams();
-  bindFilterEvents();
-  renderColleges();
-
-  // Listen to global currency changes
-  window.addEventListener("currency_changed", () => {
+    initNavigation();
+    initURLParams();
+    bindFilterEvents();
     renderColleges();
-  });
+    window.addEventListener("currency_changed", () => {
+        renderColleges();
+    });
 });
-
 function initURLParams() {
-  const params = new URLSearchParams(window.location.search);
-  const disciplineParam = params.get("discipline") || params.get("domain");
-  if (disciplineParam) {
-    activeDiscipline = disciplineParam;
-    const select = document.getElementById("discipline-select");
-    if (select) select.value = disciplineParam;
-  }
-}
-
-function bindFilterEvents() {
-  const searchInput = document.getElementById("college-search-input");
-  searchInput.addEventListener("input", (e) => {
-    searchQuery = e.target.value.trim().toLowerCase();
-    renderColleges();
-  });
-
-  const disciplineSelect = document.getElementById("discipline-select");
-  disciplineSelect.addEventListener("change", (e) => {
-    activeDiscipline = e.target.value;
-    renderColleges();
-  });
-
-  const countryBtns = document.querySelectorAll(".country-filter-btn");
-  countryBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      activeCountry = btn.getAttribute("data-country");
-      updateCountryButtons();
-      renderColleges();
-    });
-  });
-
-  const resetBtn = document.getElementById("reset-colleges-filter-btn");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      activeCountry = "All";
-      activeDiscipline = "All";
-      searchQuery = "";
-      searchInput.value = "";
-      disciplineSelect.value = "All";
-      updateCountryButtons();
-      renderColleges();
-    });
-  }
-}
-
-function updateCountryButtons() {
-  const countryBtns = document.querySelectorAll(".country-filter-btn");
-  countryBtns.forEach(btn => {
-    const country = btn.getAttribute("data-country");
-    if (country === activeCountry) {
-      btn.className = "btn btn-primary btn-sm country-filter-btn";
-    } else {
-      btn.className = "btn btn-outline btn-sm country-filter-btn";
+    const params = new URLSearchParams(window.location.search);
+    const disciplineParam = params.get("discipline") || params.get("domain");
+    if (disciplineParam) {
+        activeDiscipline = disciplineParam;
+        const select = document.getElementById("discipline-select");
+        if (select)
+            select.value = disciplineParam;
     }
-  });
+    const countryParam = params.get("country");
+    if (countryParam) {
+        activeCountry = countryParam;
+        updateCountryButtons();
+    }
 }
-
+function bindFilterEvents() {
+    const searchInput = document.getElementById("college-search-input");
+    if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            const target = e.target;
+            searchQuery = target.value.trim().toLowerCase();
+            renderColleges();
+        });
+    }
+    const disciplineSelect = document.getElementById("discipline-select");
+    if (disciplineSelect) {
+        disciplineSelect.addEventListener("change", (e) => {
+            const target = e.target;
+            activeDiscipline = target.value;
+            renderColleges();
+        });
+    }
+    const countryBtns = document.querySelectorAll(".country-filter-btn");
+    countryBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            activeCountry = btn.getAttribute("data-country") || "All";
+            updateCountryButtons();
+            renderColleges();
+        });
+    });
+    const resetBtn = document.getElementById("reset-colleges-filter-btn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+            activeCountry = "All";
+            activeDiscipline = "All";
+            searchQuery = "";
+            if (searchInput)
+                searchInput.value = "";
+            if (disciplineSelect)
+                disciplineSelect.value = "All";
+            updateCountryButtons();
+            renderColleges();
+        });
+    }
+}
+function updateCountryButtons() {
+    const countryBtns = document.querySelectorAll(".country-filter-btn");
+    countryBtns.forEach(btn => {
+        const country = btn.getAttribute("data-country") || "";
+        if (country === activeCountry) {
+            btn.className = "btn btn-primary btn-sm country-filter-btn";
+        }
+        else {
+            btn.className = "btn btn-outline btn-sm country-filter-btn";
+        }
+    });
+}
 function renderColleges() {
-  const grid = document.getElementById("colleges-grid");
-  const noResults = document.getElementById("no-colleges");
-  const countText = document.getElementById("colleges-count-text");
-  const currentCurrency = getActiveCurrency();
-
-  // Update currency indicator badge
-  const currencyBadge = document.getElementById("currency-indicator-badge");
-  if (currencyBadge) {
-    currencyBadge.textContent = `Tuition: Localized in ${currentCurrency}`;
-  }
-
-  const filtered = COLLEGES_DATA.filter(college => {
-    // Country filter
-    const matchesCountry = activeCountry === "All" || college.country.toLowerCase() === activeCountry.toLowerCase();
-
-    // Discipline filter
-    const matchesDiscipline = activeDiscipline === "All" ||
-      college.matchedCareerDomains.some(d => d.toLowerCase().includes(activeDiscipline.toLowerCase()));
-
-    // Search query
-    const matchesSearch = !searchQuery ||
-      college.name.toLowerCase().includes(searchQuery) ||
-      college.city.toLowerCase().includes(searchQuery) ||
-      college.country.toLowerCase().includes(searchQuery) ||
-      college.flagshipPrograms.some(p => p.toLowerCase().includes(searchQuery)) ||
-      college.entranceExams.some(e => e.toLowerCase().includes(searchQuery));
-
-    return matchesCountry && matchesDiscipline && matchesSearch;
-  });
-
-  countText.textContent = `Showing ${filtered.length} of ${COLLEGES_DATA.length} premier global universities`;
-
-  if (filtered.length === 0) {
-    grid.innerHTML = "";
-    noResults.style.display = "block";
-    return;
-  }
-
-  noResults.style.display = "none";
-
-  grid.innerHTML = filtered.map(college => {
-    const localizedTuition = formatTuition(college.annualTuitionUSD, currentCurrency);
-
-    return `
+    const grid = document.getElementById("colleges-grid");
+    const noResults = document.getElementById("no-colleges");
+    const countText = document.getElementById("colleges-count-text");
+    const currentCurrency = getActiveCurrency();
+    const currencyBadge = document.getElementById("currency-indicator-badge");
+    if (currencyBadge) {
+        currencyBadge.textContent = `Tuition: Localized in ${currentCurrency}`;
+    }
+    const filtered = COLLEGES_DATA.filter(college => {
+        const matchesCountry = activeCountry === "All" || college.country.toLowerCase() === activeCountry.toLowerCase();
+        const matchesDiscipline = activeDiscipline === "All" ||
+            college.matchedCareerDomains.some(d => d.toLowerCase().includes(activeDiscipline.toLowerCase()));
+        const matchesSearch = !searchQuery ||
+            college.name.toLowerCase().includes(searchQuery) ||
+            college.city.toLowerCase().includes(searchQuery) ||
+            college.country.toLowerCase().includes(searchQuery) ||
+            college.flagshipPrograms.some(p => p.toLowerCase().includes(searchQuery)) ||
+            college.entranceExams.some(e => e.toLowerCase().includes(searchQuery));
+        return matchesCountry && matchesDiscipline && matchesSearch;
+    });
+    if (countText) {
+        countText.textContent = `Showing ${filtered.length} of ${COLLEGES_DATA.length} premier global universities`;
+    }
+    if (!grid || !noResults)
+        return;
+    if (filtered.length === 0) {
+        grid.innerHTML = "";
+        noResults.style.display = "block";
+        return;
+    }
+    noResults.style.display = "none";
+    grid.innerHTML = filtered.map(college => {
+        const localizedTuition = formatTuition(college.annualTuitionUSD, currentCurrency);
+        return `
       <article class="card">
         <div class="card-header" style="align-items: flex-start;">
           <div>
@@ -145,7 +134,6 @@ function renderColleges() {
           ${college.notableFocus}
         </p>
 
-        <!-- Flagship Degree Programs -->
         <div style="margin-bottom: var(--space-4);">
           <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-2);">
             Flagship Courses & Degrees
@@ -155,7 +143,6 @@ function renderColleges() {
           </ul>
         </div>
 
-        <!-- Entrance Examinations -->
         <div style="margin-bottom: var(--space-4); background-color: var(--bg-tertiary); padding: var(--space-3); border-radius: var(--radius-md);">
           <div style="font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">
             Entrance Exams & Admissions
@@ -176,5 +163,5 @@ function renderColleges() {
         </div>
       </article>
     `;
-  }).join("");
+    }).join("");
 }

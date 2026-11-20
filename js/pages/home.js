@@ -1,61 +1,52 @@
-/**
- * Home Page Controller
- * Localizes salaries and provides quick entry points to college and career paths.
- */
-
 import { initNavigation } from "../modules/navigation.js";
 import { storage } from "../modules/storage.js";
 import { CAREERS_DATA } from "../data/careers.js";
 import { formatSalaryRange, getActiveCurrency } from "../modules/currency.js";
-
 document.addEventListener("DOMContentLoaded", () => {
-  initNavigation();
-  renderAssessmentBanner();
-  renderFeaturedCareers();
-
-  window.addEventListener("currency_changed", () => {
+    initNavigation();
+    renderAssessmentBanner();
     renderFeaturedCareers();
-  });
+    window.addEventListener("currency_changed", () => {
+        renderFeaturedCareers();
+    });
 });
-
 function renderAssessmentBanner() {
-  const lastAssessment = storage.getQuizResult();
-  const container = document.getElementById("assessment-status-container");
-  if (!container) return;
-
-  if (lastAssessment && lastAssessment.topMatches && lastAssessment.topMatches.length > 0) {
-    const topMatch = lastAssessment.topMatches[0];
-    document.getElementById("top-match-title").textContent = topMatch.title;
-    document.getElementById("top-match-badge").textContent = `${topMatch.matchScore}% Match`;
-    document.getElementById("top-match-desc").textContent = `${topMatch.description} Key strength alignment: ${topMatch.primaryAlignment}.`;
-    
-    const roadmapLink = document.getElementById("top-match-roadmap-link");
-    if (roadmapLink) {
-      roadmapLink.href = `roadmap.html?careerId=${encodeURIComponent(topMatch.id)}`;
+    const lastAssessment = storage.getQuizResult();
+    const container = document.getElementById("assessment-status-container");
+    if (!container)
+        return;
+    if (lastAssessment && lastAssessment.topMatches && lastAssessment.topMatches.length > 0) {
+        const topMatch = lastAssessment.topMatches[0];
+        const titleEl = document.getElementById("top-match-title");
+        const badgeEl = document.getElementById("top-match-badge");
+        const descEl = document.getElementById("top-match-desc");
+        if (titleEl)
+            titleEl.textContent = topMatch.title;
+        if (badgeEl)
+            badgeEl.textContent = `${topMatch.matchScore}% Match`;
+        if (descEl)
+            descEl.textContent = `${topMatch.description} Key strength alignment: ${topMatch.primaryAlignment}.`;
+        const roadmapLink = document.getElementById("top-match-roadmap-link");
+        if (roadmapLink) {
+            roadmapLink.href = `roadmap.html?careerId=${encodeURIComponent(topMatch.id)}`;
+        }
+        const collegesLink = document.getElementById("top-match-colleges-link");
+        if (collegesLink) {
+            collegesLink.href = `colleges.html?discipline=${encodeURIComponent(topMatch.domain)}`;
+        }
+        container.style.display = "block";
     }
-
-    const collegesLink = document.getElementById("top-match-colleges-link");
-    if (collegesLink) {
-      collegesLink.href = `colleges.html?discipline=${encodeURIComponent(topMatch.domain)}`;
-    }
-
-    container.style.display = "block";
-  }
 }
-
 function renderFeaturedCareers() {
-  const grid = document.getElementById("featured-careers-grid");
-  if (!grid) return;
-
-  // Select 3 diverse careers
-  const featured = [CAREERS_DATA[0], CAREERS_DATA[3], CAREERS_DATA[5]];
-  const activeCurrency = getActiveCurrency();
-
-  grid.innerHTML = featured.map(career => {
-    const isBookmarked = storage.isBookmarked(career.id);
-    const salaryDisplay = formatSalaryRange(career.minSalaryUSD, career.maxSalaryUSD, activeCurrency);
-
-    return `
+    const grid = document.getElementById("featured-careers-grid");
+    if (!grid)
+        return;
+    const featured = [CAREERS_DATA[0], CAREERS_DATA[3], CAREERS_DATA[5]];
+    const activeCurrency = getActiveCurrency();
+    grid.innerHTML = featured.map(career => {
+        const isBookmarked = storage.isBookmarked(career.id);
+        const salaryDisplay = formatSalaryRange(career.minSalaryUSD, career.maxSalaryUSD, activeCurrency);
+        return `
       <article class="card">
         <div class="card-header">
           <div>
@@ -85,14 +76,12 @@ function renderFeaturedCareers() {
         </div>
       </article>
     `;
-  }).join("");
-
-  // Attach bookmark toggle listeners
-  grid.querySelectorAll(".bookmark-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-id");
-      const saved = storage.toggleBookmark(id);
-      btn.textContent = saved ? "★ Saved" : "☆ Save";
+    }).join("");
+    grid.querySelectorAll(".bookmark-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id") || "";
+            const saved = storage.toggleBookmark(id);
+            btn.textContent = saved ? "★ Saved" : "☆ Save";
+        });
     });
-  });
 }

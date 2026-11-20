@@ -1,0 +1,25 @@
+{
+  "name": "customized-digital-guidance-platform-2025",
+  "version": "2.0.0",
+  "description": "Customized Digital Guidance Platform (2025) built with TypeScript, CSS Grid Architecture, and Modular Web Standards.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "career-guidance",
+    "higher-education",
+    "typescript",
+    "css-grid",
+    "web-architecture",
+    "multi-page-application"
+  ],
+  "author": "vasishtaaa",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

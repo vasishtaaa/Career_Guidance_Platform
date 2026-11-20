@@ -1,114 +1,101 @@
-/**
- * Career Explorer Page Controller
- * Supports dynamic regional currency conversion and quick cross-linking to matched colleges.
- */
-
 import { initNavigation } from "../modules/navigation.js";
 import { CAREERS_DATA } from "../data/careers.js";
 import { storage } from "../modules/storage.js";
 import { formatSalaryRange, getActiveCurrency } from "../modules/currency.js";
-
 let activeDomain = "All";
 let searchQuery = "";
-
 document.addEventListener("DOMContentLoaded", () => {
-  initNavigation();
-  initFiltersFromURL();
-  bindFilterEvents();
-  renderCareers();
-
-  window.addEventListener("currency_changed", () => {
+    initNavigation();
+    initFiltersFromURL();
+    bindFilterEvents();
     renderCareers();
-  });
+    window.addEventListener("currency_changed", () => {
+        renderCareers();
+    });
 });
-
 function initFiltersFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  const domainParam = params.get("domain");
-  if (domainParam) {
-    activeDomain = domainParam;
-    updateDomainButtons();
-  }
-}
-
-function bindFilterEvents() {
-  const searchInput = document.getElementById("career-search-input");
-  searchInput.addEventListener("input", (e) => {
-    searchQuery = e.target.value.trim().toLowerCase();
-    renderCareers();
-  });
-
-  const domainBtns = document.querySelectorAll(".domain-filter-btn");
-  domainBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      activeDomain = btn.getAttribute("data-domain");
-      updateDomainButtons();
-      renderCareers();
-    });
-  });
-
-  const resetBtn = document.getElementById("reset-filters-btn");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      activeDomain = "All";
-      searchQuery = "";
-      searchInput.value = "";
-      updateDomainButtons();
-      renderCareers();
-    });
-  }
-}
-
-function updateDomainButtons() {
-  const domainBtns = document.querySelectorAll(".domain-filter-btn");
-  domainBtns.forEach(btn => {
-    const domain = btn.getAttribute("data-domain");
-    if (domain === activeDomain || (activeDomain !== "All" && domain.toLowerCase().includes(activeDomain.toLowerCase()))) {
-      btn.className = "btn btn-primary btn-sm domain-filter-btn";
-    } else {
-      btn.className = "btn btn-outline btn-sm domain-filter-btn";
+    const params = new URLSearchParams(window.location.search);
+    const domainParam = params.get("domain");
+    if (domainParam) {
+        activeDomain = domainParam;
+        updateDomainButtons();
     }
-  });
 }
-
+function bindFilterEvents() {
+    const searchInput = document.getElementById("career-search-input");
+    if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            const target = e.target;
+            searchQuery = target.value.trim().toLowerCase();
+            renderCareers();
+        });
+    }
+    const domainBtns = document.querySelectorAll(".domain-filter-btn");
+    domainBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            activeDomain = btn.getAttribute("data-domain") || "All";
+            updateDomainButtons();
+            renderCareers();
+        });
+    });
+    const resetBtn = document.getElementById("reset-filters-btn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+            activeDomain = "All";
+            searchQuery = "";
+            if (searchInput)
+                searchInput.value = "";
+            updateDomainButtons();
+            renderCareers();
+        });
+    }
+}
+function updateDomainButtons() {
+    const domainBtns = document.querySelectorAll(".domain-filter-btn");
+    domainBtns.forEach(btn => {
+        const domain = btn.getAttribute("data-domain") || "";
+        if (domain === activeDomain || (activeDomain !== "All" && domain.toLowerCase().includes(activeDomain.toLowerCase()))) {
+            btn.className = "btn btn-primary btn-sm domain-filter-btn";
+        }
+        else {
+            btn.className = "btn btn-outline btn-sm domain-filter-btn";
+        }
+    });
+}
 function renderCareers() {
-  const grid = document.getElementById("careers-grid");
-  const noResults = document.getElementById("no-results");
-  const countText = document.getElementById("results-count-text");
-  const activeCurrency = getActiveCurrency();
-
-  const salaryBadge = document.getElementById("salary-currency-badge");
-  if (salaryBadge) {
-    salaryBadge.textContent = `Salaries Localized in ${activeCurrency}`;
-  }
-
-  const filtered = CAREERS_DATA.filter(career => {
-    const matchesDomain = activeDomain === "All" ||
-      career.domain.toLowerCase().includes(activeDomain.toLowerCase());
-
-    const matchesSearch = !searchQuery ||
-      career.title.toLowerCase().includes(searchQuery) ||
-      career.description.toLowerCase().includes(searchQuery) ||
-      career.skills.some(s => s.toLowerCase().includes(searchQuery)) ||
-      career.domain.toLowerCase().includes(searchQuery);
-
-    return matchesDomain && matchesSearch;
-  });
-
-  countText.textContent = `Showing ${filtered.length} of ${CAREERS_DATA.length} pathways`;
-
-  if (filtered.length === 0) {
-    grid.innerHTML = "";
-    noResults.style.display = "block";
-    return;
-  }
-
-  noResults.style.display = "none";
-  grid.innerHTML = filtered.map(career => {
-    const isBookmarked = storage.isBookmarked(career.id);
-    const localizedSalary = formatSalaryRange(career.minSalaryUSD, career.maxSalaryUSD, activeCurrency);
-
-    return `
+    const grid = document.getElementById("careers-grid");
+    const noResults = document.getElementById("no-results");
+    const countText = document.getElementById("results-count-text");
+    const activeCurrency = getActiveCurrency();
+    const salaryBadge = document.getElementById("salary-currency-badge");
+    if (salaryBadge) {
+        salaryBadge.textContent = `Salaries Localized in ${activeCurrency}`;
+    }
+    const filtered = CAREERS_DATA.filter(career => {
+        const matchesDomain = activeDomain === "All" ||
+            career.domain.toLowerCase().includes(activeDomain.toLowerCase());
+        const matchesSearch = !searchQuery ||
+            career.title.toLowerCase().includes(searchQuery) ||
+            career.description.toLowerCase().includes(searchQuery) ||
+            career.skills.some(s => s.toLowerCase().includes(searchQuery)) ||
+            career.domain.toLowerCase().includes(searchQuery);
+        return matchesDomain && matchesSearch;
+    });
+    if (countText) {
+        countText.textContent = `Showing ${filtered.length} of ${CAREERS_DATA.length} pathways`;
+    }
+    if (!grid || !noResults)
+        return;
+    if (filtered.length === 0) {
+        grid.innerHTML = "";
+        noResults.style.display = "block";
+        return;
+    }
+    noResults.style.display = "none";
+    grid.innerHTML = filtered.map(career => {
+        const isBookmarked = storage.isBookmarked(career.id);
+        const localizedSalary = formatSalaryRange(career.minSalaryUSD, career.maxSalaryUSD, activeCurrency);
+        return `
       <article class="card">
         <div class="card-header">
           <div>
@@ -154,14 +141,12 @@ function renderCareers() {
         </div>
       </article>
     `;
-  }).join("");
-
-  // Attach bookmark toggle listeners
-  grid.querySelectorAll(".bookmark-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-id");
-      const isSaved = storage.toggleBookmark(id);
-      btn.textContent = isSaved ? "★ Saved" : "☆ Save";
+    }).join("");
+    grid.querySelectorAll(".bookmark-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id") || "";
+            const isSaved = storage.toggleBookmark(id);
+            btn.textContent = isSaved ? "★ Saved" : "☆ Save";
+        });
     });
-  });
 }

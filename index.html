@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customized Digital Guidance Platform (2025) | Higher Education & Career Advisory</title>
+  <title>Customized Digital Guidance Platform (2025) | TypeScript & CSS Grid Edition</title>
   <meta name="description" content="A responsive, privacy-first digital guidance platform delivering tailored career roadmaps, worldwide university course search, and regional currency localization.">
   
-  <!-- CSS Design System -->
+  <!-- CSS Design System & Grid Architecture -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/grid-layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -47,7 +48,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
-        <span class="hero-pill">✨ Global Higher Education & Career Advisory 2025</span>
+        <span class="hero-pill">⚡ Powered by TypeScript & CSS Grid Architecture</span>
         <h1 class="hero-title">Your Tailored Pathway to <span class="gradient-text">World-Class Careers</span> & Top Colleges</h1>
         <p class="hero-desc">
           Empowering students globally with personalized career aptitude matching, course-to-college discovery across 10+ countries, and localized salary benchmarks formatted in your regional currency.
@@ -64,24 +65,75 @@
       </div>
     </section>
 
-    <!-- Platform Highlights & Core Engines -->
-    <section class="container" style="margin-top: var(--space-8); margin-bottom: var(--space-12);">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
-        <div class="card" style="text-align: center; padding: var(--space-8) var(--space-4);">
-          <div style="font-size: var(--font-size-3xl); font-weight: 800; color: var(--primary); margin-bottom: var(--space-1);">5 Disciplines</div>
-          <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">Tech, Healthcare, Business, Creative Media & Engineering</p>
+    <!-- Executive Bento Box Grid Layout -->
+    <section class="container">
+      <div class="bento-grid">
+        <!-- Bento Cell 1: Global Platform Vision (Span 8) -->
+        <div class="bento-cell bento-hero-banner">
+          <div>
+            <span class="badge badge-tech" style="margin-bottom: var(--space-3);">Intelligent Advisory Suite</span>
+            <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--space-2); letter-spacing: -0.02em;">
+              Architected for Future Leaders & Global Students
+            </h2>
+            <p style="color: var(--text-secondary); max-width: 580px; margin-bottom: var(--space-6);">
+              Navigate the complex landscape of higher education. Align personal cognitive strengths with 10+ in-demand disciplines and target premier colleges worldwide.
+            </p>
+          </div>
+          <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+            <a href="assessment.html" class="btn btn-primary btn-sm">Launch Quiz Engine &rarr;</a>
+            <a href="explorer.html" class="btn btn-outline btn-sm">Browse 10+ Pathways</a>
+          </div>
         </div>
-        <div class="card" style="text-align: center; padding: var(--space-8) var(--space-4);">
-          <div style="font-size: var(--font-size-3xl); font-weight: 800; color: var(--secondary); margin-bottom: var(--space-1);">Global Colleges</div>
-          <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">Top universities in US, UK, Europe, Asia, India, Canada & Australia</p>
+
+        <!-- Bento Cell 2: Live Currency Localization (Span 4) -->
+        <div class="bento-cell bento-stat-card">
+          <div class="badge badge-currency" style="margin-bottom: var(--space-3);">Auto-Geo Localization</div>
+          <div style="font-size: 3rem; font-weight: 800; color: var(--secondary); margin-bottom: var(--space-1);" id="bento-currency-display">
+            Global
+          </div>
+          <h4 style="margin: 0 0 var(--space-2) 0; font-size: var(--font-size-base);">Regional Currency Detection</h4>
+          <p style="font-size: var(--font-size-xs); color: var(--text-secondary); margin: 0;">
+            Salaries and university tuition fees are automatically mapped to your local currency (INR, USD, EUR, GBP, CAD, AUD, SGD, etc.).
+          </p>
         </div>
-        <div class="card" style="text-align: center; padding: var(--space-8) var(--space-4);">
-          <div style="font-size: var(--font-size-3xl); font-weight: 800; color: var(--success); margin-bottom: var(--space-1);">Local Currency</div>
-          <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">Auto-localized in INR (₹), USD ($), EUR (€), GBP (£), etc.</p>
+
+        <!-- Bento Cell 3: Global College Network (Span 4) -->
+        <div class="bento-cell">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+            <span class="badge badge-health">Worldwide Higher Ed</span>
+            <span style="font-size: 1.5rem;">🎓</span>
+          </div>
+          <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">Global College Finder</h3>
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
+            Search premier accredited institutions (MIT, Stanford, Oxford, Cambridge, ETH Zurich, IITs, NUS) mapped to required degrees.
+          </p>
+          <a href="colleges.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Search Universities &rarr;</a>
         </div>
-        <div class="card" style="text-align: center; padding: var(--space-8) var(--space-4);">
-          <div style="font-size: var(--font-size-3xl); font-weight: 800; color: var(--accent); margin-bottom: var(--space-1);">Privacy First</div>
-          <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">100% Client-side LocalStorage with JSON backup</p>
+
+        <!-- Bento Cell 4: Multi-Vector Math (Span 4) -->
+        <div class="bento-cell">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+            <span class="badge badge-eng">Vector Mathematics</span>
+            <span style="font-size: 1.5rem;">📐</span>
+          </div>
+          <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">Cosine Matching Engine</h3>
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
+            Evaluates 5 key cognitive vectors (Technology, Research, Engineering, Leadership, Media) to compute compatibility percentages.
+          </p>
+          <a href="assessment.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Take Assessment &rarr;</a>
+        </div>
+
+        <!-- Bento Cell 5: Client-Side Data Sovereignty (Span 4) -->
+        <div class="bento-cell">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+            <span class="badge badge-business">Data Privacy</span>
+            <span style="font-size: 1.5rem;">🔒</span>
+          </div>
+          <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">100% Client-Side Privacy</h3>
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
+            Your quiz results, bookmarks, and milestone checklists are isolated in your browser with JSON profile export and import.
+          </p>
+          <a href="profile.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Manage Profile &rarr;</a>
         </div>
       </div>
     </section>
@@ -101,29 +153,6 @@
           <a id="top-match-roadmap-link" href="roadmap.html" class="btn btn-primary btn-sm">Open Personalized Roadmap</a>
           <a id="top-match-colleges-link" href="colleges.html" class="btn btn-secondary btn-sm">Find Colleges for this Role</a>
           <a href="assessment.html" class="btn btn-outline btn-sm">Retake Assessment</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Global College & Course Search Highlight Card -->
-    <section class="container" style="margin-bottom: var(--space-16);">
-      <div class="card" style="padding: var(--space-8); background: radial-gradient(circle at 10% 50%, var(--secondary-subtle), transparent 60%);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-6);">
-          <div style="max-width: 680px;">
-            <span class="badge badge-health" style="margin-bottom: var(--space-2);">Worldwide Higher Education</span>
-            <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--space-2);">Find Top Global Universities For Your Dream Major</h2>
-            <p style="color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Explore premier colleges across the US (MIT, Stanford, CMU), UK (Oxford, Cambridge, Imperial), Europe (ETH Zurich, TUM), Singapore (NUS), India (IIT Bombay, IIT Delhi, IISc), Canada (U of T), and Australia. View required entrance tests (SAT, GRE, JEE, GATE, IELTS) and annual tuition fees calculated directly in your local currency.
-            </p>
-            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
-              <a href="colleges.html" class="btn btn-primary btn-sm">Search Global University Finder &rarr;</a>
-              <a href="colleges.html?discipline=Technology" class="btn btn-outline btn-sm">Tech & CS Programs</a>
-              <a href="colleges.html?discipline=Engineering" class="btn btn-outline btn-sm">Engineering & Robotics</a>
-            </div>
-          </div>
-          <div style="font-size: 5rem; line-height: 1; user-select: none;">
-            🎓
-          </div>
         </div>
       </div>
     </section>
@@ -187,7 +216,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+        <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with TypeScript, CSS Grid, HTML5, & CSS3.</p>
         <p style="margin: 0; font-size: var(--font-size-xs);">Zero External Dependencies • Privacy First</p>
       </div>
     </div>

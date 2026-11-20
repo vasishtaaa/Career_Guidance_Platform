@@ -1,141 +1,108 @@
-/**
- * Global Currency & Geolocation Localization Engine
- * Detects visitor's region automatically via browser Intl / Timezone API,
- * maps to local currency, and provides dynamic conversion and formatting.
- */
-
 import { storage } from "./storage.js";
-
-// Base exchange rates against USD (approximate global benchmarks)
 export const EXCHANGE_RATES = {
-  USD: { rate: 1.0, symbol: "$", code: "USD", name: "US Dollar (USD)" },
-  INR: { rate: 84.5, symbol: "₹", code: "INR", name: "Indian Rupee (INR)" },
-  EUR: { rate: 0.92, symbol: "€", code: "EUR", name: "Euro (EUR)" },
-  GBP: { rate: 0.79, symbol: "£", code: "GBP", name: "British Pound (GBP)" },
-  CAD: { rate: 1.36, symbol: "CA$", code: "CAD", name: "Canadian Dollar (CAD)" },
-  AUD: { rate: 1.52, symbol: "A$", code: "AUD", name: "Australian Dollar (AUD)" },
-  SGD: { rate: 1.34, symbol: "S$", code: "SGD", name: "Singapore Dollar (SGD)" },
-  AED: { rate: 3.67, symbol: "AED ", code: "AED", name: "UAE Dirham (AED)" },
-  JPY: { rate: 154.0, symbol: "¥", code: "JPY", name: "Japanese Yen (JPY)" },
-  CHF: { rate: 0.88, symbol: "CHF ", code: "CHF", name: "Swiss Franc (CHF)" }
+    USD: { rate: 1.0, symbol: "$", code: "USD", name: "US Dollar (USD)" },
+    INR: { rate: 84.5, symbol: "₹", code: "INR", name: "Indian Rupee (INR)" },
+    EUR: { rate: 0.92, symbol: "€", code: "EUR", name: "Euro (EUR)" },
+    GBP: { rate: 0.79, symbol: "£", code: "GBP", name: "British Pound (GBP)" },
+    CAD: { rate: 1.36, symbol: "CA$", code: "CAD", name: "Canadian Dollar (CAD)" },
+    AUD: { rate: 1.52, symbol: "A$", code: "AUD", name: "Australian Dollar (AUD)" },
+    SGD: { rate: 1.34, symbol: "S$", code: "SGD", name: "Singapore Dollar (SGD)" },
+    AED: { rate: 3.67, symbol: "AED ", code: "AED", name: "UAE Dirham (AED)" },
+    JPY: { rate: 154.0, symbol: "¥", code: "JPY", name: "Japanese Yen (JPY)" },
+    CHF: { rate: 0.88, symbol: "CHF ", code: "CHF", name: "Swiss Franc (CHF)" }
 };
-
-/**
- * Automatically detects regional currency based on user's timezone & locale
- */
 export function detectUserCurrency() {
-  try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-    const lang = (navigator.language || "").toLowerCase();
-
-    // Timezone & Locale heuristics
-    if (tz.includes("Calcutta") || tz.includes("Kolkata") || lang.endsWith("-in")) return "INR";
-    if (tz.includes("London") || lang.endsWith("-gb")) return "GBP";
-    if (tz.includes("Paris") || tz.includes("Berlin") || tz.includes("Rome") || tz.includes("Madrid") || tz.includes("Amsterdam") || tz.includes("Brussels") || tz.includes("Vienna")) return "EUR";
-    if (tz.includes("Toronto") || tz.includes("Vancouver") || tz.includes("Montreal") || lang.endsWith("-ca")) return "CAD";
-    if (tz.includes("Sydney") || tz.includes("Melbourne") || tz.includes("Brisbane") || tz.includes("Perth") || lang.endsWith("-au")) return "AUD";
-    if (tz.includes("Singapore") || lang.endsWith("-sg")) return "SGD";
-    if (tz.includes("Dubai") || tz.includes("Abu_Dhabi") || lang.endsWith("-ae")) return "AED";
-    if (tz.includes("Tokyo") || lang.endsWith("-jp")) return "JPY";
-    if (tz.includes("Zurich") || lang.endsWith("-ch")) return "CHF";
-
-    // Default to USD
-    return "USD";
-  } catch (e) {
-    return "USD";
-  }
-}
-
-/**
- * Returns the currently active currency code (stored preference or auto-detected)
- */
-export function getActiveCurrency() {
-  const state = storage.getState();
-  if (state.currency && EXCHANGE_RATES[state.currency]) {
-    return state.currency;
-  }
-  const detected = detectUserCurrency();
-  state.currency = detected;
-  storage.saveState(state);
-  return detected;
-}
-
-/**
- * Sets user preferred currency and triggers global update event
- */
-export function setActiveCurrency(currencyCode) {
-  if (!EXCHANGE_RATES[currencyCode]) return;
-  const state = storage.getState();
-  state.currency = currencyCode;
-  storage.saveState(state);
-  window.dispatchEvent(new CustomEvent("currency_changed", { detail: { currency: currencyCode } }));
-}
-
-/**
- * Converts a USD numeric amount into target currency
- */
-export function convertFromUSD(amountUSD, targetCurrency = getActiveCurrency()) {
-  const info = EXCHANGE_RATES[targetCurrency] || EXCHANGE_RATES.USD;
-  return amountUSD * info.rate;
-}
-
-/**
- * Formats a USD amount into localized currency string (e.g. "$120,000" or "₹1,01,40,000")
- */
-export function formatCurrencyFromUSD(amountUSD, targetCurrency = getActiveCurrency(), roundToHundreds = true) {
-  const info = EXCHANGE_RATES[targetCurrency] || EXCHANGE_RATES.USD;
-  let converted = amountUSD * info.rate;
-
-  if (roundToHundreds) {
-    if (targetCurrency === "JPY") {
-      converted = Math.round(converted / 1000) * 1000;
-    } else if (targetCurrency === "INR") {
-      converted = Math.round(converted / 10000) * 10000;
-    } else {
-      converted = Math.round(converted / 1000) * 1000;
+    try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+        const lang = (navigator.language || "").toLowerCase();
+        if (tz.includes("Calcutta") || tz.includes("Kolkata") || lang.endsWith("-in"))
+            return "INR";
+        if (tz.includes("London") || lang.endsWith("-gb"))
+            return "GBP";
+        if (tz.includes("Paris") || tz.includes("Berlin") || tz.includes("Rome") || tz.includes("Madrid") || tz.includes("Amsterdam") || tz.includes("Brussels") || tz.includes("Vienna"))
+            return "EUR";
+        if (tz.includes("Toronto") || tz.includes("Vancouver") || tz.includes("Montreal") || lang.endsWith("-ca"))
+            return "CAD";
+        if (tz.includes("Sydney") || tz.includes("Melbourne") || tz.includes("Brisbane") || tz.includes("Perth") || lang.endsWith("-au"))
+            return "AUD";
+        if (tz.includes("Singapore") || lang.endsWith("-sg"))
+            return "SGD";
+        if (tz.includes("Dubai") || tz.includes("Abu_Dhabi") || lang.endsWith("-ae"))
+            return "AED";
+        if (tz.includes("Tokyo") || lang.endsWith("-jp"))
+            return "JPY";
+        if (tz.includes("Zurich") || lang.endsWith("-ch"))
+            return "CHF";
+        return "USD";
     }
-  }
-
-  const locale = targetCurrency === "INR" ? "en-IN" : "en-US";
-
-  try {
-    return new Intl.NumberFormat(locale, {
-      style: "currency",
-      currency: info.code,
-      maximumFractionDigits: 0
-    }).format(converted);
-  } catch (e) {
-    return `${info.symbol}${Math.round(converted).toLocaleString()}`;
-  }
+    catch (e) {
+        return "USD";
+    }
 }
-
-/**
- * Formats a salary range from min USD and max USD (e.g. 120000, 185000)
- */
+export function getActiveCurrency() {
+    const state = storage.getState();
+    if (state.currency && EXCHANGE_RATES[state.currency]) {
+        return state.currency;
+    }
+    const detected = detectUserCurrency();
+    state.currency = detected;
+    storage.saveState(state);
+    return detected;
+}
+export function setActiveCurrency(currencyCode) {
+    if (!EXCHANGE_RATES[currencyCode])
+        return;
+    const state = storage.getState();
+    state.currency = currencyCode;
+    storage.saveState(state);
+    window.dispatchEvent(new CustomEvent("currency_changed", { detail: { currency: currencyCode } }));
+}
+export function convertFromUSD(amountUSD, targetCurrency = getActiveCurrency()) {
+    const info = EXCHANGE_RATES[targetCurrency] || EXCHANGE_RATES.USD;
+    return amountUSD * info.rate;
+}
+export function formatCurrencyFromUSD(amountUSD, targetCurrency = getActiveCurrency(), roundToHundreds = true) {
+    const info = EXCHANGE_RATES[targetCurrency] || EXCHANGE_RATES.USD;
+    let converted = amountUSD * info.rate;
+    if (roundToHundreds) {
+        if (targetCurrency === "JPY") {
+            converted = Math.round(converted / 1000) * 1000;
+        }
+        else if (targetCurrency === "INR") {
+            converted = Math.round(converted / 10000) * 10000;
+        }
+        else {
+            converted = Math.round(converted / 1000) * 1000;
+        }
+    }
+    const locale = targetCurrency === "INR" ? "en-IN" : "en-US";
+    try {
+        return new Intl.NumberFormat(locale, {
+            style: "currency",
+            currency: info.code,
+            maximumFractionDigits: 0
+        }).format(converted);
+    }
+    catch (e) {
+        return `${info.symbol}${Math.round(converted).toLocaleString()}`;
+    }
+}
 export function formatSalaryRange(minUSD, maxUSD, targetCurrency = getActiveCurrency()) {
-  const minFormatted = formatCurrencyFromUSD(minUSD, targetCurrency);
-  const maxFormatted = formatCurrencyFromUSD(maxUSD, targetCurrency);
-  return `${minFormatted} – ${maxFormatted} / yr`;
+    const minFormatted = formatCurrencyFromUSD(minUSD, targetCurrency);
+    const maxFormatted = formatCurrencyFromUSD(maxUSD, targetCurrency);
+    return `${minFormatted} – ${maxFormatted} / yr`;
 }
-
-/**
- * Formats annual college tuition
- */
 export function formatTuition(annualUSD, targetCurrency = getActiveCurrency()) {
-  if (!annualUSD || annualUSD === 0) return "Tuition-Free / Fully Funded";
-  return `${formatCurrencyFromUSD(annualUSD, targetCurrency)} / yr`;
+    if (!annualUSD || annualUSD === 0)
+        return "Tuition-Free / Fully Funded";
+    return `${formatCurrencyFromUSD(annualUSD, targetCurrency)} / yr`;
 }
-
-/**
- * Mounts currency selector widget in navigation
- */
 export function initCurrencySelector() {
-  const container = document.getElementById("currency-selector-container");
-  if (!container) return;
-
-  const current = getActiveCurrency();
-
-  container.innerHTML = `
+    const container = document.getElementById("currency-selector-container");
+    if (!container)
+        return;
+    const current = getActiveCurrency();
+    container.innerHTML = `
     <div class="currency-picker-wrapper" title="Currency automatically localized to your region. Click to change.">
       <span class="currency-globe-icon">
         <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -151,11 +118,11 @@ export function initCurrencySelector() {
       </select>
     </div>
   `;
-
-  const select = document.getElementById("global-currency-select");
-  if (select) {
-    select.addEventListener("change", (e) => {
-      setActiveCurrency(e.target.value);
-    });
-  }
+    const select = document.getElementById("global-currency-select");
+    if (select) {
+        select.addEventListener("change", (e) => {
+            const target = e.target;
+            setActiveCurrency(target.value);
+        });
+    }
 }

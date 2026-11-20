@@ -1,0 +1,156 @@
+/* ==========================================================================
+   CSS Grid Architectural Layout System
+   Advanced Bento Grids, Dual-Column Workspaces, and Adaptive Auto-Fill Grids
+   ========================================================================== */
+
+/* --- 1. Bento Box Grid (Homepage Executive Showcase) --- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-16);
+}
+
+.bento-cell {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-cell:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--border-color-focus);
+}
+
+.bento-cell-span-12 { grid-column: span 12; }
+.bento-cell-span-8  { grid-column: span 8; }
+.bento-cell-span-6  { grid-column: span 6; }
+.bento-cell-span-4  { grid-column: span 4; }
+.bento-cell-span-3  { grid-column: span 3; }
+
+/* Bento Featured Banner */
+.bento-hero-banner {
+  grid-column: span 8;
+  background: radial-gradient(circle at 100% 0%, var(--primary-subtle), var(--bg-card) 70%);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.bento-stat-card {
+  grid-column: span 4;
+  background: radial-gradient(circle at 0% 100%, var(--secondary-subtle), var(--bg-card) 70%);
+  border-color: rgba(13, 148, 136, 0.3);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- 2. Explorer Dual-Column Layout (Sticky Filter Sidebar + Content Grid) --- */
+.explorer-layout-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.explorer-sidebar-grid {
+  position: sticky;
+  top: 6rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.explorer-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+/* --- 3. Roadmap Split-View Grid (Timeline Left, Colleges & Resources Right) --- */
+.roadmap-split-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.roadmap-main-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.roadmap-sidebar-column {
+  position: sticky;
+  top: 6rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* --- 4. Colleges Multi-Column Directory Grid --- */
+.colleges-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--space-6);
+}
+
+.college-card-internal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  background-color: var(--bg-tertiary);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+}
+
+/* --- 5. Assessment Options Card Grid --- */
+.quiz-options-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+/* --- 6. Responsive Grid Breakpoints --- */
+@media (max-width: 1024px) {
+  .bento-cell-span-8 { grid-column: span 12; }
+  .bento-cell-span-4 { grid-column: span 6; }
+  .bento-stat-card { grid-column: span 12; }
+  .explorer-layout-grid { grid-template-columns: 1fr; }
+  .explorer-sidebar-grid { position: static; }
+  .roadmap-split-grid { grid-template-columns: 1fr; }
+  .roadmap-sidebar-column { position: static; }
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  .bento-cell-span-12,
+  .bento-cell-span-8,
+  .bento-cell-span-6,
+  .bento-cell-span-4,
+  .bento-cell-span-3 {
+    grid-column: span 1;
+  }
+  .college-card-internal-grid {
+    grid-template-columns: 1fr;
+  }
+}

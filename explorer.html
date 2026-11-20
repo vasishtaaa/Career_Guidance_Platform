@@ -8,6 +8,7 @@
   
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/grid-layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -43,56 +44,58 @@
   </header>
 
   <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
-    <!-- Page Header & Filtering Section -->
+    <!-- Page Header -->
     <section style="margin-bottom: var(--space-8);">
-      <div style="margin-bottom: var(--space-6);">
-        <div style="display: flex; gap: var(--space-2); align-items: center; margin-bottom: var(--space-2);">
-          <span class="badge badge-tech">Industry Pathways Catalog</span>
-          <span class="badge badge-currency" id="salary-currency-badge">Salaries Localized</span>
-        </div>
-        <h1 style="font-size: 2.5rem; letter-spacing: -0.03em;">Multi-Disciplinary Career Explorer</h1>
-        <p style="max-width: 740px; color: var(--text-secondary); font-size: var(--font-size-base);">
-          Browse in-demand professions, review required technical competencies, inspect projected compensation bands converted to your local currency, and find matched college degree programs.
-        </p>
+      <div style="display: flex; gap: var(--space-2); align-items: center; margin-bottom: var(--space-2);">
+        <span class="badge badge-tech">Industry Pathways Catalog</span>
+        <span class="badge badge-currency" id="salary-currency-badge">Salaries Localized</span>
       </div>
-
-      <!-- Search & Filter Controls -->
-      <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-6);">
-        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center; justify-content: space-between;">
-          <!-- Search input -->
-          <div style="flex: 1; min-width: 260px;">
-            <input type="text" id="career-search-input" class="form-control" placeholder="Search by role title, skill (e.g. Python, ROS, FHIR), or keyword..." aria-label="Search careers">
-          </div>
-
-          <!-- Quick status count -->
-          <div id="results-count-text" style="font-size: var(--font-size-sm); color: var(--text-secondary); font-weight: 600;">
-            Showing all careers
-          </div>
-        </div>
-
-        <!-- Domain Filter Pills -->
-        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-4);" id="domain-filters" role="tablist">
-          <button class="btn btn-primary btn-sm domain-filter-btn" data-domain="All">All Disciplines</button>
-          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Technology">Technology</button>
-          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Healthcare">Healthcare</button>
-          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Business & Finance">Business & Finance</button>
-          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Creative Arts">Creative Arts</button>
-          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Engineering">Engineering</button>
-        </div>
-      </div>
+      <h1 style="font-size: 2.5rem; letter-spacing: -0.03em;">Multi-Disciplinary Career Explorer</h1>
+      <p style="max-width: 740px; color: var(--text-secondary); font-size: var(--font-size-base);">
+        Browse in-demand professions, review required technical competencies, inspect projected compensation bands converted to your local currency, and find matched college degree programs.
+      </p>
     </section>
 
-    <!-- Career Cards Grid -->
-    <section>
-      <div id="careers-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: var(--space-6);">
-        <!-- Injected dynamically by explorer.js -->
-      </div>
+    <!-- Explorer Grid Architecture (Sidebar Filters + Interactive Cards Grid) -->
+    <section class="explorer-layout-grid">
+      <!-- Sticky Filter Sidebar Grid -->
+      <aside class="explorer-sidebar-grid">
+        <div>
+          <label for="career-search-input" class="form-label" style="font-size: var(--font-size-xs); text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Search Roles & Skills</label>
+          <input type="text" id="career-search-input" class="form-control" placeholder="Search Python, ROS, FinTech, EHR..." aria-label="Search careers">
+        </div>
 
-      <!-- No Results Fallback -->
-      <div id="no-results" class="card" style="display: none; text-align: center; padding: var(--space-12);">
-        <h3>No matching careers found</h3>
-        <p>Try searching for a different keyword or resetting your domain filters.</p>
-        <button id="reset-filters-btn" class="btn btn-outline btn-sm" style="margin: 0 auto;">Reset All Filters</button>
+        <div>
+          <div style="font-size: var(--font-size-xs); font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-2);">Filter by Discipline</div>
+          <div style="display: flex; flex-direction: column; gap: var(--space-2);" id="domain-filters" role="tablist">
+            <button class="btn btn-primary btn-sm domain-filter-btn" data-domain="All" style="text-align: left; justify-content: flex-start;">All Disciplines</button>
+            <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Technology" style="text-align: left; justify-content: flex-start;">Technology & AI</button>
+            <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Healthcare" style="text-align: left; justify-content: flex-start;">Healthcare & Bio</button>
+            <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Business & Finance" style="text-align: left; justify-content: flex-start;">Business & Finance</button>
+            <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Creative Arts" style="text-align: left; justify-content: flex-start;">Creative Arts & UX</button>
+            <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Engineering" style="text-align: left; justify-content: flex-start;">Engineering & Systems</button>
+          </div>
+        </div>
+
+        <div style="padding-top: var(--space-4); border-top: 1px solid var(--border-color);">
+          <div id="results-count-text" style="font-size: var(--font-size-xs); color: var(--text-secondary); font-weight: 600; margin-bottom: var(--space-2);">
+            Showing all careers
+          </div>
+          <button id="reset-filters-btn" class="btn btn-outline btn-sm" style="width: 100%;">Reset All Filters</button>
+        </div>
+      </aside>
+
+      <!-- Main Career Cards Grid -->
+      <div>
+        <div id="careers-grid" class="explorer-cards-grid">
+          <!-- Injected dynamically by explorer.js -->
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="no-results" class="card" style="display: none; text-align: center; padding: var(--space-12);">
+          <h3>No matching careers found</h3>
+          <p>Try searching for a different keyword or resetting your domain filters.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -100,7 +103,7 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-bottom" style="border: none; padding-top: 0;">
-      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with TypeScript & CSS Grid.</p>
       <a href="assessment.html" class="btn btn-primary btn-sm">Take Match Assessment &rarr;</a>
     </div>
   </footer>

@@ -8,6 +8,7 @@
   
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/grid-layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -42,7 +43,7 @@
     </div>
   </header>
 
-  <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16); max-width: 980px;">
+  <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
     <!-- Career Selector & Overview Card -->
     <section class="card" style="padding: var(--space-8); margin-bottom: var(--space-8);">
       <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
@@ -63,68 +64,74 @@
       </div>
     </section>
 
-    <!-- Milestone Progress Tracker -->
-    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2);">
-        <h3 style="font-size: var(--font-size-lg); margin: 0;">Your Readiness Progress</h3>
-        <span id="progress-percentage-text" style="font-weight: 700; color: var(--primary);">0% Completed</span>
-      </div>
-      <div style="height: 10px; background-color: var(--border-color); border-radius: var(--radius-full); overflow: hidden; margin-bottom: var(--space-2);">
-        <div id="roadmap-progress-fill" style="width: 0%; height: 100%; background: var(--gradient-brand); transition: width var(--transition-normal);"></div>
-      </div>
-      <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0;">Check off completed milestones below to record your personal readiness journey.</p>
-    </section>
-
-    <!-- Prerequisites & Foundations -->
-    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
-      <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">Academic & Technical Prerequisites</h3>
-      <ul id="prerequisites-list" style="padding-left: var(--space-5); color: var(--text-secondary); font-size: var(--font-size-sm); display: flex; flex-direction: column; gap: var(--space-2);">
-        <!-- Injected dynamically -->
-      </ul>
-    </section>
-
-    <!-- Interactive Step Timeline -->
-    <section style="margin-bottom: var(--space-12);">
-      <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-2); letter-spacing: -0.02em;">Sequential Career Milestones</h2>
-      <p style="color: var(--text-secondary); margin-bottom: var(--space-6); font-size: var(--font-size-sm);">
-        A structured, phase-by-phase progression curriculum from foundational concepts to industry job readiness.
-      </p>
-
-      <div id="timeline-container" class="timeline">
-        <!-- Injected dynamically -->
-      </div>
-    </section>
-
-    <!-- Matching Global University Courses -->
-    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8); background: radial-gradient(circle at 100% 0%, var(--primary-subtle), transparent 50%);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
-        <div>
-          <span class="badge badge-health" style="margin-bottom: var(--space-1);">Worldwide University Degrees</span>
-          <h3 style="font-size: var(--font-size-xl); margin: 0;">Premier Colleges Offering Related Degree Courses</h3>
+    <!-- Split-Screen Grid Layout (Timeline on Left + Degree Programs & Resources on Right) -->
+    <section class="roadmap-split-grid">
+      <!-- Left Column: Sequential Milestones -->
+      <div class="roadmap-main-column">
+        <!-- Readiness Progress Bar -->
+        <div class="card" style="padding: var(--space-6);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2);">
+            <h3 style="font-size: var(--font-size-lg); margin: 0;">Your Readiness Progress</h3>
+            <span id="progress-percentage-text" style="font-weight: 700; color: var(--primary);">0% Completed</span>
+          </div>
+          <div style="height: 10px; background-color: var(--border-color); border-radius: var(--radius-full); overflow: hidden; margin-bottom: var(--space-2);">
+            <div id="roadmap-progress-fill" style="width: 0%; height: 100%; background: var(--gradient-brand); transition: width var(--transition-normal);"></div>
+          </div>
+          <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0;">Check off completed milestones below to record your personal readiness journey.</p>
         </div>
-        <a id="view-all-colleges-link" href="colleges.html" class="btn btn-outline btn-sm">Browse All Universities &rarr;</a>
-      </div>
-      <p style="font-size: var(--font-size-xs); color: var(--text-secondary); margin-bottom: var(--space-4);">
-        Top accredited universities worldwide featuring flagship degree programs mapped to this profession:
-      </p>
-      <div id="matched-colleges-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4);">
-        <!-- Injected dynamically by roadmap.js -->
-      </div>
-    </section>
 
-    <!-- Curated Industry Resources -->
-    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
-      <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-4);">Recommended Certifications & Learning Portals</h3>
-      <div id="resources-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4);">
-        <!-- Injected dynamically -->
+        <!-- Academic Prerequisites -->
+        <div class="card" style="padding: var(--space-6);">
+          <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">Academic & Technical Prerequisites</h3>
+          <ul id="prerequisites-list" style="padding-left: var(--space-5); color: var(--text-secondary); font-size: var(--font-size-sm); display: flex; flex-direction: column; gap: var(--space-2);">
+            <!-- Injected dynamically -->
+          </ul>
+        </div>
+
+        <!-- Milestones Timeline -->
+        <div>
+          <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-2); letter-spacing: -0.02em;">Sequential Career Milestones</h2>
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-6); font-size: var(--font-size-sm);">
+            A structured, phase-by-phase progression curriculum from foundational concepts to industry job readiness.
+          </p>
+          <div id="timeline-container" class="timeline">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
       </div>
+
+      <!-- Right Column: Matching Universities & Certifications (Sticky) -->
+      <aside class="roadmap-sidebar-column">
+        <!-- Matching University Degree Courses -->
+        <div class="card" style="padding: var(--space-6); background: radial-gradient(circle at 100% 0%, var(--primary-subtle), transparent 50%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3); flex-wrap: wrap; gap: var(--space-2);">
+            <span class="badge badge-health">Worldwide Higher Ed</span>
+            <a id="view-all-colleges-link" href="colleges.html" class="btn btn-outline btn-sm" style="font-size: 11px;">View All &rarr;</a>
+          </div>
+          <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Top Colleges for This Track</h3>
+          <p style="font-size: var(--font-size-xs); color: var(--text-secondary); margin-bottom: var(--space-4);">
+            Premier accredited universities worldwide featuring flagship degree programs mapped to this profession:
+          </p>
+          <div id="matched-colleges-grid" style="display: grid; grid-template-columns: 1fr; gap: var(--space-3);">
+            <!-- Injected dynamically by roadmap.js -->
+          </div>
+        </div>
+
+        <!-- Curated Learning Portals -->
+        <div class="card" style="padding: var(--space-6);">
+          <h3 style="font-size: var(--font-size-base); margin-bottom: var(--space-3);">Certifications & Portals</h3>
+          <div id="resources-grid" style="display: grid; grid-template-columns: 1fr; gap: var(--space-3);">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+      </aside>
     </section>
   </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-bottom" style="border: none; padding-top: 0;">
-      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with TypeScript & CSS Grid.</p>
       <a href="profile.html" class="btn btn-outline btn-sm">View Saved Profile &rarr;</a>
     </div>
   </footer>
