@@ -148,4 +148,4 @@ $$\text{MatchScore}_i = \text{round}\left(65 + 33 \cdot \text{Sim}(\mathbf{U}, \
 ---
 
 ## 📄 License
-This project is open-source under the [MIT License](LICENSE).
+This project is open source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
