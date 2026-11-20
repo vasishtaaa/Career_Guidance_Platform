@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global College & University Directory | Customized Digital Guidance Platform 2025</title>
+  <meta name="description" content="Discover premier universities and colleges worldwide offering degree programs mapped to high-growth career tracks. Features live regional currency conversion for tuition fees.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Guidance2025</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="assessment.html" class="nav-link">Assessment</a></li>
+          <li><a href="explorer.html" class="nav-link">Career Explorer</a></li>
+          <li><a href="colleges.html" class="nav-link active">Colleges & Universities</a></li>
+          <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
+          <li><a href="profile.html" class="nav-link">Profile <span class="bookmark-count-badge"></span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Worldwide Currency Picker -->
+        <div id="currency-selector-container"></div>
+        <button class="theme-toggle" aria-label="Toggle theme"></button>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
+    <!-- Page Header -->
+    <section style="margin-bottom: var(--space-8);">
+      <div style="margin-bottom: var(--space-6);">
+        <div style="display: flex; gap: var(--space-2); align-items: center; margin-bottom: var(--space-2); flex-wrap: wrap;">
+          <span class="badge badge-tech">Worldwide Higher Education</span>
+          <span class="badge badge-currency" id="currency-indicator-badge">Tuition: Local Currency</span>
+        </div>
+        <h1 style="font-size: 2.5rem; letter-spacing: -0.03em;">Global University & College Finder</h1>
+        <p style="max-width: 760px; color: var(--text-secondary); font-size: var(--font-size-base);">
+          Explore premier universities and accredited higher education institutions across North America, Europe, Asia, and Australasia. Review required entrance examinations, admission competitiveness, flagship degree programs, and annual tuition fees displayed in your regional currency.
+        </p>
+      </div>
+
+      <!-- Search & Multi-Facet Filters -->
+      <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: var(--space-4);">
+          <!-- Search box -->
+          <div style="flex: 1; min-width: 280px;">
+            <input type="text" id="college-search-input" class="form-control" placeholder="Search by university name, city, program (e.g. AI, Robotics, FinTech)..." aria-label="Search colleges">
+          </div>
+
+          <!-- Career Discipline Filter -->
+          <div style="min-width: 240px;">
+            <select id="discipline-select" class="form-control" aria-label="Filter by career discipline">
+              <option value="All">All Disciplines & Faculties</option>
+              <option value="Technology">Technology & Computer Science</option>
+              <option value="Engineering">Engineering & Robotics</option>
+              <option value="Healthcare">Healthcare & Bioinformatics</option>
+              <option value="Business & Finance">Business & Quantitative Finance</option>
+              <option value="Creative Arts">Creative Arts & Interaction Design</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Country Filter Pills -->
+        <div>
+          <div style="font-size: var(--font-size-xs); font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-2);">Filter by Region:</div>
+          <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;" id="country-filters">
+            <button class="btn btn-primary btn-sm country-filter-btn" data-country="All">All Countries</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="United States">🇺🇸 United States</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="United Kingdom">🇬🇧 United Kingdom</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Switzerland">🇨🇭 Switzerland</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Germany">🇩🇪 Germany</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Singapore">🇸🇬 Singapore</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="India">🇮🇳 India</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Canada">🇨🇦 Canada</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Australia">🇦🇺 Australia</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Japan">🇯🇵 Japan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- University Directory Results Count -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+      <div id="colleges-count-text" style="font-size: var(--font-size-sm); color: var(--text-secondary); font-weight: 600;">
+        Showing colleges worldwide
+      </div>
+    </div>
+
+    <!-- Colleges Grid -->
+    <section>
+      <div id="colleges-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: var(--space-6);">
+        <!-- Injected dynamically by colleges.js -->
+      </div>
+
+      <!-- No Results State -->
+      <div id="no-colleges" class="card" style="display: none; text-align: center; padding: var(--space-12);">
+        <h3>No matching universities found</h3>
+        <p>Try clearing your keyword or selecting "All Countries".</p>
+        <button id="reset-colleges-filter-btn" class="btn btn-outline btn-sm" style="margin: 0 auto;">Reset All Filters</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <a href="explorer.html" class="btn btn-outline btn-sm">Explore Careers &rarr;</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/colleges.js"></script>
+</body>
+</html>

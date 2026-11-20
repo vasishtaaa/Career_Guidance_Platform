@@ -1,13 +1,16 @@
 /**
  * Shared Navigation & Header Controller
- * Manages responsive mobile menu drawer, active page highlighting, and live bookmark counter.
+ * Manages responsive mobile menu drawer, active page highlighting,
+ * global currency switcher, and live bookmark counter.
  */
 
 import { storage } from "./storage.js";
 import { initTheme } from "./theme.js";
+import { initCurrencySelector } from "./currency.js";
 
 export function initNavigation() {
   initTheme();
+  initCurrencySelector();
 
   // Mobile menu drawer
   const menuBtn = document.querySelector(".mobile-menu-btn");

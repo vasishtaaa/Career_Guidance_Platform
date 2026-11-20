@@ -25,12 +25,15 @@
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="assessment.html" class="nav-link active">Assessment</a></li>
           <li><a href="explorer.html" class="nav-link">Career Explorer</a></li>
+          <li><a href="colleges.html" class="nav-link">Colleges & Universities</a></li>
           <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
           <li><a href="profile.html" class="nav-link">Profile <span class="bookmark-count-badge"></span></a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
+        <!-- Worldwide Currency Picker -->
+        <div id="currency-selector-container"></div>
         <button class="theme-toggle" aria-label="Toggle theme"></button>
         <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -78,7 +81,7 @@
     <section id="results-wrapper" class="container" style="display: none; max-width: 900px; margin-top: var(--space-6);">
       <div class="card" style="margin-bottom: var(--space-8); padding: var(--space-8); text-align: center; background: radial-gradient(circle at 50% 0%, var(--primary-subtle), transparent 70%);">
         <span class="badge badge-tech" style="margin: 0 auto var(--space-3) auto;">Advisory Synthesis Complete</span>
-        <h1 style="font-size: 2.25rem; margin-bottom: var(--space-2);">Your Personalized Career Pathways</h1>
+        <h1 style="font-size: 2.25rem; margin-bottom: var(--space-2); letter-spacing: -0.02em;">Your Personalized Career Pathways</h1>
         <p style="max-width: 620px; margin: 0 auto; color: var(--text-secondary);">
           Based on your multi-vector profile, our matching engine calculated compatibility against all disciplines. Here are your highest-aligned pathways:
         </p>
@@ -101,7 +104,7 @@
       <!-- Action Buttons -->
       <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
         <button id="retake-quiz-btn" class="btn btn-outline">Retake Assessment</button>
-        <a href="explorer.html" class="btn btn-secondary">Browse All Careers</a>
+        <a href="colleges.html" class="btn btn-secondary">Find Colleges for My Matches</a>
         <a id="view-primary-roadmap-btn" href="roadmap.html" class="btn btn-primary">Open Top Match Roadmap &rarr;</a>
       </div>
     </section>

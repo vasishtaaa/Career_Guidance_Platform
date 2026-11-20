@@ -1,10 +1,12 @@
 /**
  * Career Explorer Page Controller
+ * Supports dynamic regional currency conversion and quick cross-linking to matched colleges.
  */
 
 import { initNavigation } from "../modules/navigation.js";
 import { CAREERS_DATA } from "../data/careers.js";
 import { storage } from "../modules/storage.js";
+import { formatSalaryRange, getActiveCurrency } from "../modules/currency.js";
 
 let activeDomain = "All";
 let searchQuery = "";
@@ -14,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initFiltersFromURL();
   bindFilterEvents();
   renderCareers();
+
+  window.addEventListener("currency_changed", () => {
+    renderCareers();
+  });
 });
 
 function initFiltersFromURL() {
@@ -26,14 +32,12 @@ function initFiltersFromURL() {
 }
 
 function bindFilterEvents() {
-  // Search input
   const searchInput = document.getElementById("career-search-input");
   searchInput.addEventListener("input", (e) => {
     searchQuery = e.target.value.trim().toLowerCase();
     renderCareers();
   });
 
-  // Domain filter pills
   const domainBtns = document.querySelectorAll(".domain-filter-btn");
   domainBtns.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -43,7 +47,6 @@ function bindFilterEvents() {
     });
   });
 
-  // Reset filters
   const resetBtn = document.getElementById("reset-filters-btn");
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
@@ -72,13 +75,17 @@ function renderCareers() {
   const grid = document.getElementById("careers-grid");
   const noResults = document.getElementById("no-results");
   const countText = document.getElementById("results-count-text");
+  const activeCurrency = getActiveCurrency();
+
+  const salaryBadge = document.getElementById("salary-currency-badge");
+  if (salaryBadge) {
+    salaryBadge.textContent = `Salaries Localized in ${activeCurrency}`;
+  }
 
   const filtered = CAREERS_DATA.filter(career => {
-    // Domain filter
     const matchesDomain = activeDomain === "All" ||
       career.domain.toLowerCase().includes(activeDomain.toLowerCase());
 
-    // Search query filter
     const matchesSearch = !searchQuery ||
       career.title.toLowerCase().includes(searchQuery) ||
       career.description.toLowerCase().includes(searchQuery) ||
@@ -99,6 +106,8 @@ function renderCareers() {
   noResults.style.display = "none";
   grid.innerHTML = filtered.map(career => {
     const isBookmarked = storage.isBookmarked(career.id);
+    const localizedSalary = formatSalaryRange(career.minSalaryUSD, career.maxSalaryUSD, activeCurrency);
+
     return `
       <article class="card">
         <div class="card-header">
@@ -115,27 +124,33 @@ function renderCareers() {
 
         <div style="margin-bottom: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--font-size-xs);">
           <div style="display: flex; justify-content: space-between;">
-            <span style="color: var(--text-muted); font-weight: var(--font-weight-bold); text-transform: uppercase;">Growth Rate:</span>
-            <span style="font-weight: var(--font-weight-semibold); color: var(--success);">${career.growthRate}</span>
+            <span style="color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Growth Rate:</span>
+            <span style="font-weight: 600; color: var(--success);">${career.growthRate}</span>
           </div>
           <div style="display: flex; justify-content: space-between;">
-            <span style="color: var(--text-muted); font-weight: var(--font-weight-bold); text-transform: uppercase;">Required Edu:</span>
+            <span style="color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Required Edu:</span>
             <span style="color: var(--text-primary); text-align: right; max-width: 60%;">${career.educationLevel}</span>
           </div>
         </div>
 
         <div style="margin-bottom: var(--space-4);">
-          <div style="font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); color: var(--text-muted); margin-bottom: var(--space-2); text-transform: uppercase;">Core Competencies</div>
+          <div style="font-size: var(--font-size-xs); font-weight: 700; color: var(--text-muted); margin-bottom: var(--space-2); text-transform: uppercase;">Core Competencies</div>
           <div style="display: flex; gap: var(--space-1); flex-wrap: wrap;">
             ${career.skills.map(s => `<span class="badge badge-neutral" style="font-size: 11px;">${s}</span>`).join("")}
           </div>
         </div>
 
         <div class="card-footer">
-          <span style="font-weight: var(--font-weight-bold); color: var(--text-primary); font-size: var(--font-size-sm);">${career.salaryRange}</span>
-          <a href="roadmap.html?careerId=${encodeURIComponent(career.id)}" class="btn btn-primary btn-sm">
-            Roadmap &rarr;
-          </a>
+          <div>
+            <div style="font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Compensation Band (${activeCurrency})</div>
+            <div style="font-weight: 800; color: var(--primary); font-size: var(--font-size-sm);">${localizedSalary}</div>
+          </div>
+          <div style="display: flex; gap: var(--space-2);">
+            <a href="colleges.html?discipline=${encodeURIComponent(career.domain)}" class="btn btn-outline btn-sm" title="Find universities offering courses for this career">Colleges</a>
+            <a href="roadmap.html?careerId=${encodeURIComponent(career.id)}" class="btn btn-primary btn-sm">
+              Roadmap &rarr;
+            </a>
+          </div>
         </div>
       </article>
     `;
