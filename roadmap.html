@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actionable Career Roadmap & Milestones | Customized Digital Guidance Platform 2025</title>
+  <meta name="description" content="Step-by-step career readiness roadmap, learning milestones, and prerequisite checklists for students.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Guidance2025</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="assessment.html" class="nav-link">Assessment</a></li>
+          <li><a href="explorer.html" class="nav-link">Career Explorer</a></li>
+          <li><a href="roadmap.html" class="nav-link active">Roadmap</a></li>
+          <li><a href="profile.html" class="nav-link">Profile <span class="bookmark-count-badge"></span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle theme"></button>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16); max-width: 960px;">
+    <!-- Career Selector & Overview Card -->
+    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+        <div>
+          <span class="badge badge-tech" style="margin-bottom: var(--space-2);">Actionable Advisory Blueprint</span>
+          <h1 id="roadmap-title" style="margin: 0; font-size: var(--font-size-3xl);">Loading Roadmap...</h1>
+        </div>
+
+        <!-- Career Selector Dropdown -->
+        <div style="min-width: 260px;">
+          <label for="career-select" class="form-label" style="font-size: var(--font-size-xs); text-transform: uppercase; color: var(--text-muted);">Switch Career Track:</label>
+          <select id="career-select" class="form-control" aria-label="Select career track"></select>
+        </div>
+      </div>
+
+      <div id="roadmap-meta" style="display: flex; gap: var(--space-6); flex-wrap: wrap; padding-top: var(--space-4); border-top: 1px solid var(--border-color); font-size: var(--font-size-sm);">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Milestone Progress Tracker -->
+    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2);">
+        <h3 style="font-size: var(--font-size-lg); margin: 0;">Your Readiness Progress</h3>
+        <span id="progress-percentage-text" style="font-weight: var(--font-weight-bold); color: var(--primary);">0% Completed</span>
+      </div>
+      <div style="height: 10px; background-color: var(--border-color); border-radius: var(--radius-full); overflow: hidden; margin-bottom: var(--space-2);">
+        <div id="roadmap-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width var(--transition-normal);"></div>
+      </div>
+      <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0;">Check off completed milestones below to record your personal readiness journey.</p>
+    </section>
+
+    <!-- Prerequisites & Foundations -->
+    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+      <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">Academic & Technical Prerequisites</h3>
+      <ul id="prerequisites-list" style="padding-left: var(--space-5); color: var(--text-secondary); font-size: var(--font-size-sm); display: flex; flex-direction: column; gap: var(--space-2);">
+        <!-- Injected dynamically -->
+      </ul>
+    </section>
+
+    <!-- Interactive Step Timeline -->
+    <section style="margin-bottom: var(--space-12);">
+      <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-2);">Sequential Career Milestones</h2>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-6); font-size: var(--font-size-sm);">
+        A structured, phase-by-phase progression curriculum from foundational concepts to industry job readiness.
+      </p>
+
+      <div id="timeline-container" class="timeline">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Curated Industry Resources -->
+    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+      <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-4);">Recommended Certifications & Learning Portals</h3>
+      <div id="resources-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4);">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <a href="profile.html" class="btn btn-outline btn-sm">View Saved Profile &rarr;</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/roadmap.js"></script>
+</body>
+</html>

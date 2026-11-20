@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Disciplinary Career Explorer | Customized Digital Guidance Platform 2025</title>
+  <meta name="description" content="Explore and filter comprehensive career paths across Technology, Healthcare, Business, Creative Arts, and Engineering.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Guidance2025</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="assessment.html" class="nav-link">Assessment</a></li>
+          <li><a href="explorer.html" class="nav-link active">Career Explorer</a></li>
+          <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
+          <li><a href="profile.html" class="nav-link">Profile <span class="bookmark-count-badge"></span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle theme"></button>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
+    <!-- Page Header & Filtering Section -->
+    <section style="margin-bottom: var(--space-8);">
+      <div style="margin-bottom: var(--space-6);">
+        <span class="badge badge-tech" style="margin-bottom: var(--space-2);">Industry Pathways Catalog</span>
+        <h1>Multi-Disciplinary Career Explorer</h1>
+        <p style="max-width: 720px; color: var(--text-secondary);">
+          Browse in-demand professions, review required technical proficiencies, inspect projected salary ranges, and bookmark pathways to your student profile.
+        </p>
+      </div>
+
+      <!-- Search & Filter Controls -->
+      <div class="card" style="padding: var(--space-5); margin-bottom: var(--space-6);">
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center; justify-content: space-between;">
+          <!-- Search input -->
+          <div style="flex: 1; min-width: 260px;">
+            <input type="text" id="career-search-input" class="form-control" placeholder="Search by role title, skill (e.g. Python, ROS, FHIR), or keyword..." aria-label="Search careers">
+          </div>
+
+          <!-- Quick status count -->
+          <div id="results-count-text" style="font-size: var(--font-size-sm); color: var(--text-secondary); font-weight: var(--font-weight-medium);">
+            Showing all careers
+          </div>
+        </div>
+
+        <!-- Domain Filter Pills -->
+        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-4);" id="domain-filters" role="tablist">
+          <button class="btn btn-primary btn-sm domain-filter-btn" data-domain="All">All Disciplines</button>
+          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Technology">Technology</button>
+          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Healthcare">Healthcare</button>
+          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Business & Finance">Business & Finance</button>
+          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Creative Arts">Creative Arts</button>
+          <button class="btn btn-outline btn-sm domain-filter-btn" data-domain="Engineering">Engineering</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Cards Grid -->
+    <section>
+      <div id="careers-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--space-6);">
+        <!-- Injected dynamically by explorer.js -->
+      </div>
+
+      <!-- No Results Fallback -->
+      <div id="no-results" class="card" style="display: none; text-align: center; padding: var(--space-12);">
+        <h3>No matching careers found</h3>
+        <p>Try searching for a different keyword or resetting your domain filters.</p>
+        <button id="reset-filters-btn" class="btn btn-outline btn-sm" style="margin: 0 auto;">Reset All Filters</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <a href="assessment.html" class="btn btn-primary btn-sm">Take Match Assessment &rarr;</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/explorer.js"></script>
+</body>
+</html>

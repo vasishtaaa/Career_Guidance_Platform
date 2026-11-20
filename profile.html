@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile & Saved Pathways | Customized Digital Guidance Platform 2025</title>
+  <meta name="description" content="View your saved career bookmarks, assessment history, milestone progress, and export your guidance profile.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Guidance2025</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="assessment.html" class="nav-link">Assessment</a></li>
+          <li><a href="explorer.html" class="nav-link">Career Explorer</a></li>
+          <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
+          <li><a href="profile.html" class="nav-link active">Profile <span class="bookmark-count-badge"></span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle theme"></button>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16); max-width: 960px;">
+    <!-- Profile Summary Card -->
+    <section class="card" style="padding: var(--space-8); margin-bottom: var(--space-8); background: radial-gradient(circle at 100% 0%, var(--primary-subtle), transparent 50%);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-4);">
+        <div>
+          <span class="badge badge-tech" style="margin-bottom: var(--space-2);">Student Dashboard</span>
+          <h1 id="profile-user-name" style="font-size: var(--font-size-3xl); margin-bottom: var(--space-1);">Candidate Advisory Record</h1>
+          <p id="profile-meta-text" style="color: var(--text-secondary); margin: 0; font-size: var(--font-size-sm);">
+            Autonomous client-side profile stored securely in your browser's LocalStorage.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <button id="export-json-btn" class="btn btn-outline btn-sm">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Export JSON
+          </button>
+          <label class="btn btn-outline btn-sm" style="cursor: pointer;">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            Import JSON
+            <input type="file" id="import-json-input" accept=".json" class="sr-only">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Assessment History Card -->
+    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
+        <h3 style="font-size: var(--font-size-xl); margin: 0;">Latest Assessment Results</h3>
+        <a href="assessment.html" class="btn btn-outline btn-sm">Take / Retake Assessment</a>
+      </div>
+
+      <div id="assessment-history-content">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Bookmarked Pathways Section -->
+    <section class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
+        <h3 style="font-size: var(--font-size-xl); margin: 0;">Saved Career Pathways</h3>
+        <span id="saved-count-badge" class="badge badge-neutral">0 Saved</span>
+      </div>
+
+      <div id="bookmarks-list" style="display: flex; flex-direction: column; gap: var(--space-4);">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Data Management & Privacy -->
+    <section class="card" style="padding: var(--space-6); border-color: var(--danger-subtle);">
+      <h3 style="font-size: var(--font-size-lg); color: var(--danger); margin-bottom: var(--space-2);">Data Sovereignty & Reset</h3>
+      <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
+        All your bookmarks, assessment scores, and milestone checkboxes exist exclusively in your browser. Clearing this data will restore the platform to default demo settings.
+      </p>
+      <button id="reset-all-btn" class="btn btn-outline btn-sm" style="color: var(--danger); border-color: var(--danger);">
+        Clear Local Data & Reset
+      </button>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <a href="index.html" class="btn btn-outline btn-sm">&larr; Back to Home</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/profile.js"></script>
+</body>
+</html>

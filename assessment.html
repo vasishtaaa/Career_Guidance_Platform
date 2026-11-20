@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Career Assessment | Customized Digital Guidance Platform 2025</title>
+  <meta name="description" content="Discover your ideal career path and higher education advisory recommendations through our multi-dimensional assessment quiz.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Guidance2025</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="assessment.html" class="nav-link active">Assessment</a></li>
+          <li><a href="explorer.html" class="nav-link">Career Explorer</a></li>
+          <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
+          <li><a href="profile.html" class="nav-link">Profile <span class="bookmark-count-badge"></span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle theme"></button>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
+    <!-- Assessment Stepper Form Card -->
+    <section id="quiz-wrapper" class="quiz-container">
+      <!-- Step Indicator -->
+      <div class="quiz-stepper">
+        <div class="stepper-progress-bar">
+          <div id="stepper-fill" class="stepper-progress-fill" style="width: 25%;"></div>
+        </div>
+        <div class="step-node active" data-step="1">1</div>
+        <div class="step-node" data-step="2">2</div>
+        <div class="step-node" data-step="3">3</div>
+        <div class="step-node" data-step="4">4</div>
+      </div>
+
+      <!-- Question Content Container -->
+      <div id="question-card">
+        <span id="quiz-category-badge" class="badge badge-tech" style="margin-bottom: var(--space-3);">Step 1 of 4</span>
+        <h2 id="quiz-question-title" class="quiz-question-title">Loading Question...</h2>
+        <p id="quiz-question-subtitle" class="quiz-question-subtitle"></p>
+
+        <!-- Options injected dynamically -->
+        <div id="quiz-options-list" class="options-grid" role="radiogroup" aria-labelledby="quiz-question-title"></div>
+
+        <!-- Navigation Controls -->
+        <div class="quiz-nav-btns">
+          <button id="quiz-prev-btn" class="btn btn-outline" style="visibility: hidden;">
+            &larr; Previous
+          </button>
+          <button id="quiz-next-btn" class="btn btn-primary" disabled>
+            Next Step &rarr;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section (Initially Hidden) -->
+    <section id="results-wrapper" class="container" style="display: none; max-width: 900px; margin-top: var(--space-6);">
+      <div class="card" style="margin-bottom: var(--space-8); padding: var(--space-8); text-align: center; background: radial-gradient(circle at 50% 0%, var(--primary-subtle), transparent 70%);">
+        <span class="badge badge-tech" style="margin: 0 auto var(--space-3) auto;">Advisory Synthesis Complete</span>
+        <h1 style="font-size: 2.25rem; margin-bottom: var(--space-2);">Your Personalized Career Pathways</h1>
+        <p style="max-width: 620px; margin: 0 auto; color: var(--text-secondary);">
+          Based on your multi-vector profile, our matching engine calculated compatibility against all disciplines. Here are your highest-aligned pathways:
+        </p>
+      </div>
+
+      <!-- Dimensional Strength Breakdown -->
+      <div class="card" style="margin-bottom: var(--space-8); padding: var(--space-6);">
+        <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-4);">Your Aptitude & Working Style Profile</h3>
+        <div id="dimension-bars" style="display: flex; flex-direction: column; gap: var(--space-4);">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Top Career Matches Cards -->
+      <h3 style="margin-bottom: var(--space-6);">Top Recommended Career Pathways</h3>
+      <div id="top-matches-list" style="display: flex; flex-direction: column; gap: var(--space-6); margin-bottom: var(--space-8);">
+        <!-- Injected dynamically -->
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
+        <button id="retake-quiz-btn" class="btn btn-outline">Retake Assessment</button>
+        <a href="explorer.html" class="btn btn-secondary">Browse All Careers</a>
+        <a id="view-primary-roadmap-btn" href="roadmap.html" class="btn btn-primary">Open Top Match Roadmap &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <p style="margin: 0;">&copy; 2025 Customized Digital Guidance Platform. Built with HTML5, CSS3, & Modern JavaScript.</p>
+      <a href="index.html" class="btn btn-outline btn-sm">&larr; Back to Home</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/assessment.js"></script>
+</body>
+</html>
