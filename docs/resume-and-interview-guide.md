@@ -1,5 +1,5 @@
 # Resume & Interview Talking Points Guide
-**Customized Digital Guidance Platform (2025) - TypeScript & CSS Grid Edition**  
+**Career Guide**  
 *Technologies: TypeScript, HTML5, CSS3 (CSS Grid Architecture), Web Architecture*
 
 ---

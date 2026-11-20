@@ -1,6 +1,6 @@
 # Web Architecture & Technical Design Specification
-**Customized Digital Guidance Platform (2025) - Global Edition**  
-*Technologies: HTML5, CSS3, JavaScript (ES6+ Modules), Web Architecture*
+**Career Guide**  
+*Technologies: TypeScript, HTML5, CSS3 (CSS Grid Architecture), Web Architecture*
 
 ---
 

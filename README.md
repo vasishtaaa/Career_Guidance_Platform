@@ -1,4 +1,4 @@
-# Customized Digital Guidance Platform (2025) - TypeScript & CSS Grid Edition
+# Career Guide
 > **Technologies: TypeScript, HTML5, CSS3 (CSS Grid Architecture), Web Architecture**  
 > *A responsive, privacy-first web application delivering personalized career roadmaps, worldwide university course matching, and regional currency localization.*
 

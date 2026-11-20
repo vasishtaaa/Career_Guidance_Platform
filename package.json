@@ -1,7 +1,7 @@
 {
-  "name": "customized-digital-guidance-platform-2025",
+  "name": "career-guide",
   "version": "2.0.0",
-  "description": "Customized Digital Guidance Platform (2025) built with TypeScript, CSS Grid Architecture, and Modular Web Standards.",
+  "description": "Career Guide: Personalized career roadmaps, worldwide university course matching, and regional currency localization built with TypeScript and CSS Grid.",
   "type": "module",
   "scripts": {
     "build": "tsc",
