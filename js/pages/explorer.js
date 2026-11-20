@@ -62,6 +62,10 @@ function updateDomainButtons() {
         }
     });
 }
+function getBookmarkMarkup(isSaved) {
+    const fill = isSaved ? "currentColor" : "none";
+    return `<svg width="13" height="13" viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> <span>${isSaved ? "Saved" : "Save"}</span>`;
+}
 function renderCareers() {
     const grid = document.getElementById("careers-grid");
     const noResults = document.getElementById("no-results");
@@ -103,7 +107,7 @@ function renderCareers() {
             <h3 class="card-title" style="margin-top: var(--space-2);">${career.title}</h3>
           </div>
           <button class="bookmark-btn btn btn-outline btn-sm" data-id="${career.id}" aria-label="Bookmark ${career.title}">
-            ${isBookmarked ? "★ Saved" : "☆ Save"}
+            ${getBookmarkMarkup(isBookmarked)}
           </button>
         </div>
 
@@ -146,7 +150,7 @@ function renderCareers() {
         btn.addEventListener("click", () => {
             const id = btn.getAttribute("data-id") || "";
             const isSaved = storage.toggleBookmark(id);
-            btn.textContent = isSaved ? "★ Saved" : "☆ Save";
+            btn.innerHTML = getBookmarkMarkup(isSaved);
         });
     });
 }

@@ -6,6 +6,11 @@
   <title>Career Guide | Global Higher Education & Career Advisory</title>
   <meta name="description" content="A responsive, privacy-first digital guidance platform delivering tailored career roadmaps, worldwide university course search, and regional currency localization.">
   
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- CSS Design System & Grid Architecture -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
@@ -18,8 +23,13 @@
   <header class="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand">
-        <span class="brand-icon">CG</span>
-        <span>Career Guide</span>
+        <div class="brand-logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+        </div>
+        <span class="brand-text">Career<span class="brand-accent">Guide</span></span>
       </a>
 
       <nav>
@@ -48,7 +58,10 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
-        <span class="hero-pill">⚡ Powered by TypeScript & CSS Grid Architecture</span>
+        <div class="hero-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>TypeScript & CSS Grid Architecture</span>
+        </div>
         <h1 class="hero-title">Your Tailored Pathway to <span class="gradient-text">World-Class Careers</span> & Top Colleges</h1>
         <p class="hero-desc">
           Empowering students globally with personalized career aptitude matching, course-to-college discovery across 10+ countries, and localized salary benchmarks formatted in your regional currency.
@@ -56,7 +69,7 @@
 
         <div class="hero-cta">
           <a href="assessment.html" class="btn btn-primary btn-lg">
-            Start 3-Minute Assessment
+            <span>Start 3-Minute Assessment</span>
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
           <a href="colleges.html" class="btn btn-outline btn-lg">Find Universities & Courses</a>
@@ -69,7 +82,7 @@
     <section class="container" style="margin-bottom: var(--space-16);">
       <div class="features-grid">
         <!-- Wide Top Showcase Card (Spans all columns) -->
-        <div class="card feature-card-wide" style="background: radial-gradient(circle at 100% 0%, var(--primary-subtle), var(--bg-card) 70%); border-color: rgba(37, 99, 235, 0.3); padding: var(--space-8);">
+        <div class="card feature-card-wide" style="background: radial-gradient(circle at 100% 0%, var(--primary-subtle), var(--bg-card) 70%); border-color: rgba(99, 102, 241, 0.3); padding: var(--space-8);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-6);">
             <div style="max-width: 680px;">
               <span class="badge badge-tech" style="margin-bottom: var(--space-3);">Intelligent Advisory Suite</span>
@@ -84,15 +97,25 @@
                 <a href="explorer.html" class="btn btn-outline btn-sm">Browse 10+ Pathways</a>
               </div>
             </div>
-            <div style="font-size: 4rem; user-select: none;">🚀</div>
+            <div style="color: var(--primary); opacity: 0.85;">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </div>
           </div>
         </div>
 
-        <!-- Feature Card 1: Global College Finder (1/3 Width) -->
+        <!-- Feature Card 1: Global College Finder -->
         <div class="card" style="padding: var(--space-6);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
-            <span class="badge badge-health">Worldwide Higher Ed</span>
-            <span style="font-size: 1.5rem;">🎓</span>
+            <span class="badge badge-health">Higher Education</span>
+            <div style="color: var(--secondary);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
           </div>
           <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">Global College Finder</h3>
           <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-6); flex: 1;">
@@ -101,11 +124,15 @@
           <a href="colleges.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Search Universities &rarr;</a>
         </div>
 
-        <!-- Feature Card 2: Cosine Matching Engine (1/3 Width) -->
+        <!-- Feature Card 2: Cosine Matching Engine -->
         <div class="card" style="padding: var(--space-6);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
             <span class="badge badge-eng">Vector Mathematics</span>
-            <span style="font-size: 1.5rem;">📐</span>
+            <div style="color: var(--accent);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
           </div>
           <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">Cosine Matching Engine</h3>
           <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-6); flex: 1;">
@@ -114,11 +141,16 @@
           <a href="assessment.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Take Assessment &rarr;</a>
         </div>
 
-        <!-- Feature Card 3: Client-Side Data Sovereignty (1/3 Width) -->
+        <!-- Feature Card 3: Client-Side Data Sovereignty -->
         <div class="card" style="padding: var(--space-6);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
             <span class="badge badge-business">Data Privacy</span>
-            <span style="font-size: 1.5rem;">🔒</span>
+            <div style="color: var(--primary);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
           </div>
           <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">100% Client-Side Privacy</h3>
           <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-6); flex: 1;">
@@ -169,10 +201,15 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <div class="brand" style="margin-bottom: var(--space-3);">
-            <span class="brand-icon">G</span>
-            <span>Guidance2025</span>
-          </div>
+          <a href="index.html" class="brand" style="margin-bottom: var(--space-3);">
+            <div class="brand-logo-mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </div>
+            <span class="brand-text">Career<span class="brand-accent">Guide</span></span>
+          </a>
           <p style="font-size: var(--font-size-sm); color: var(--text-secondary); max-width: 320px;">
             A responsive, personalized higher education and career guidance application engineered for modern students worldwide.
           </p>

@@ -6,6 +6,11 @@
   <title>Global Colleges & Universities | Career Guide</title>
   <meta name="description" content="Discover premier universities and colleges worldwide offering degree programs mapped to high-growth career tracks. Features live regional currency conversion for tuition fees.">
   
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/grid-layout.css">
@@ -17,8 +22,13 @@
   <header class="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand">
-        <span class="brand-icon">CG</span>
-        <span>Career Guide</span>
+        <div class="brand-logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+        </div>
+        <span class="brand-text">Career<span class="brand-accent">Guide</span></span>
       </a>
 
       <nav>
@@ -83,15 +93,15 @@
           <div style="font-size: var(--font-size-xs); font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-2);">Filter by Region:</div>
           <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;" id="country-filters">
             <button class="btn btn-primary btn-sm country-filter-btn" data-country="All">All Countries</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="United States">🇺🇸 United States</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="United Kingdom">🇬🇧 United Kingdom</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Switzerland">🇨🇭 Switzerland</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Germany">🇩🇪 Germany</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Singapore">🇸🇬 Singapore</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="India">🇮🇳 India</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Canada">🇨🇦 Canada</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Australia">🇦🇺 Australia</button>
-            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Japan">🇯🇵 Japan</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="United States">United States</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="United Kingdom">United Kingdom</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Switzerland">Switzerland</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Germany">Germany</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Singapore">Singapore</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="India">India</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Canada">Canada</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Australia">Australia</button>
+            <button class="btn btn-outline btn-sm country-filter-btn" data-country="Japan">Japan</button>
           </div>
         </div>
       </div>
@@ -121,9 +131,55 @@
 
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="container footer-bottom" style="border: none; padding-top: 0;">
-      <p style="margin: 0;">&copy; 2025 Career Guide. Built with TypeScript & CSS Grid.</p>
-      <a href="explorer.html" class="btn btn-outline btn-sm">Explore Careers &rarr;</a>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand" style="margin-bottom: var(--space-3);">
+            <div class="brand-logo-mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </div>
+            <span class="brand-text">Career<span class="brand-accent">Guide</span></span>
+          </a>
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); max-width: 320px;">
+            A responsive, personalized higher education and career guidance application engineered for modern students worldwide.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="assessment.html">Assessment Quiz</a></li>
+            <li><a href="explorer.html">Career Explorer</a></li>
+            <li><a href="colleges.html">Colleges & Universities</a></li>
+            <li><a href="roadmap.html">Milestone Roadmap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Worldwide Regions</h4>
+          <ul class="footer-links">
+            <li><a href="colleges.html?country=United%20States">United States</a></li>
+            <li><a href="colleges.html?country=United%20Kingdom">United Kingdom</a></li>
+            <li><a href="colleges.html?country=India">India</a></li>
+            <li><a href="colleges.html?country=Switzerland">Continental Europe</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <ul class="footer-links">
+            <li><a href="docs/architecture.md">Architecture Specs</a></li>
+            <li><a href="docs/resume-and-interview-guide.md">Resume & Interview Guide</a></li>
+            <li><a href="profile.html">Data Sovereignty</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p style="margin: 0;">&copy; 2025 Career Guide. Built with TypeScript, CSS Grid, HTML5, & CSS3.</p>
+        <p style="margin: 0; font-size: var(--font-size-xs);">Zero External Dependencies • Privacy First</p>
+      </div>
     </div>
   </footer>
 

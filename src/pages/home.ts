@@ -42,6 +42,11 @@ function renderAssessmentBanner(): void {
   }
 }
 
+function getBookmarkMarkup(isSaved: boolean): string {
+  const fill = isSaved ? "currentColor" : "none";
+  return `<svg width="13" height="13" viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> <span>${isSaved ? "Saved" : "Save"}</span>`;
+}
+
 function renderFeaturedCareers(): void {
   const grid = document.getElementById("featured-careers-grid");
   if (!grid) return;
@@ -61,7 +66,7 @@ function renderFeaturedCareers(): void {
             <h3 class="card-title" style="margin-top: var(--space-2);">${career.title}</h3>
           </div>
           <button class="bookmark-btn btn btn-outline btn-sm" data-id="${career.id}" aria-label="Bookmark ${career.title}">
-            ${isBookmarked ? "★ Saved" : "☆ Save"}
+            ${getBookmarkMarkup(isBookmarked)}
           </button>
         </div>
         <p class="card-body">${career.description}</p>
@@ -89,7 +94,7 @@ function renderFeaturedCareers(): void {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-id") || "";
       const saved = storage.toggleBookmark(id);
-      btn.textContent = saved ? "★ Saved" : "☆ Save";
+      btn.innerHTML = getBookmarkMarkup(saved);
     });
   });
 }

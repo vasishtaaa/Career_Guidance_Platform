@@ -151,6 +151,11 @@ function finishQuiz(): void {
   renderResults(aggregatedWeights, topMatches);
 }
 
+function getAssessmentBookmarkMarkup(isSaved: boolean): string {
+  const fill = isSaved ? "currentColor" : "none";
+  return `<svg width="13" height="13" viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> <span>${isSaved ? "Saved to Profile" : "Save to Profile"}</span>`;
+}
+
 function renderResults(weights: DimensionWeights, topMatches: Career[]): void {
   const dimensionsContainer = document.getElementById("dimension-bars");
   const maxWeightPossible = QUIZ_QUESTIONS.length * 1.0;
@@ -209,7 +214,7 @@ function renderResults(weights: DimensionWeights, topMatches: Career[]): void {
 
           <div class="card-footer">
             <button class="bookmark-btn btn btn-outline btn-sm" data-id="${career.id}">
-              ${isBookmarked ? "★ Saved to Profile" : "☆ Save to Profile"}
+              ${getAssessmentBookmarkMarkup(isBookmarked)}
             </button>
             <div style="display: flex; gap: var(--space-2);">
               <a href="colleges.html?discipline=${encodeURIComponent(career.domain)}" class="btn btn-outline btn-sm">Find Colleges</a>
@@ -226,7 +231,7 @@ function renderResults(weights: DimensionWeights, topMatches: Career[]): void {
       btn.addEventListener("click", () => {
         const id = btn.getAttribute("data-id") || "";
         const isSaved = storage.toggleBookmark(id);
-        btn.textContent = isSaved ? "★ Saved to Profile" : "☆ Save to Profile";
+        btn.innerHTML = getAssessmentBookmarkMarkup(isSaved);
       });
     });
   }

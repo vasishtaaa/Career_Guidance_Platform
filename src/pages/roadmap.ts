@@ -166,11 +166,14 @@ function renderMatchedColleges(activeCurrency: string): void {
       <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--space-4); display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: 4px;">
-            <span>${college.flag}</span>
+            <span class="badge badge-neutral" style="font-weight: 800; font-size: 10px; letter-spacing: 0.05em;">${college.flag}</span>
             <span style="font-size: 10px; font-weight: 700; color: var(--text-muted);">${college.globalRank}</span>
           </div>
           <h4 style="font-size: var(--font-size-sm); margin: 0 0 4px 0; color: var(--text-primary);">${college.name}</h4>
-          <span style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: var(--space-2);">📍 ${college.city}, ${college.country}</span>
+          <span style="font-size: 11px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px; margin-bottom: var(--space-2);">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            ${college.city}, ${college.country}
+          </span>
           <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: var(--space-3);">
             <strong>Top Course:</strong> ${college.flagshipPrograms[0]}
           </div>

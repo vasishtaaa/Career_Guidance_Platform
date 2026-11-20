@@ -119,13 +119,14 @@ function renderColleges() {
         <div class="card-header" style="align-items: flex-start;">
           <div>
             <div style="display: flex; gap: var(--space-2); align-items: center; margin-bottom: var(--space-2); flex-wrap: wrap;">
-              <span style="font-size: 1.25rem;">${college.flag}</span>
+              <span class="badge badge-neutral" style="font-weight: 800; font-size: 10px; letter-spacing: 0.05em;">${college.flag}</span>
               <span class="badge ${college.badgeClass}" style="font-size: 10px;">${college.globalRank}</span>
               <span class="badge badge-neutral" style="font-size: 10px;">Acceptance: ${college.acceptanceRate}</span>
             </div>
             <h3 class="card-title" style="font-size: 1.2rem; line-height: 1.3;">${college.name}</h3>
-            <span style="font-size: var(--font-size-xs); color: var(--text-muted); font-weight: 500;">
-              📍 ${college.city}, ${college.country}
+            <span style="font-size: var(--font-size-xs); color: var(--text-muted); font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              ${college.city}, ${college.country}
             </span>
           </div>
         </div>
