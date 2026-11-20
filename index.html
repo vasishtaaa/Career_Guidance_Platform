@@ -65,73 +65,64 @@
       </div>
     </section>
 
-    <!-- Executive Bento Box Grid Layout -->
-    <section class="container">
-      <div class="bento-grid">
-        <!-- Bento Cell 1: Global Platform Vision (Span 8) -->
-        <div class="bento-cell bento-hero-banner">
-          <div>
-            <span class="badge badge-tech" style="margin-bottom: var(--space-3);">Intelligent Advisory Suite</span>
-            <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--space-2); letter-spacing: -0.02em;">
-              Architected for Future Leaders & Global Students
-            </h2>
-            <p style="color: var(--text-secondary); max-width: 580px; margin-bottom: var(--space-6);">
-              Navigate the complex landscape of higher education. Align personal cognitive strengths with 10+ in-demand disciplines and target premier colleges worldwide.
-            </p>
-          </div>
-          <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
-            <a href="assessment.html" class="btn btn-primary btn-sm">Launch Quiz Engine &rarr;</a>
-            <a href="explorer.html" class="btn btn-outline btn-sm">Browse 10+ Pathways</a>
+    <!-- Executive Feature Showcase Grid -->
+    <section class="container" style="margin-bottom: var(--space-16);">
+      <div class="features-grid">
+        <!-- Wide Top Showcase Card (Spans all columns) -->
+        <div class="card feature-card-wide" style="background: radial-gradient(circle at 100% 0%, var(--primary-subtle), var(--bg-card) 70%); border-color: rgba(37, 99, 235, 0.3); padding: var(--space-8);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-6);">
+            <div style="max-width: 680px;">
+              <span class="badge badge-tech" style="margin-bottom: var(--space-3);">Intelligent Advisory Suite</span>
+              <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--space-2); letter-spacing: -0.02em;">
+                Architected for Future Leaders & Global Students
+              </h2>
+              <p style="color: var(--text-secondary); margin-bottom: var(--space-6); font-size: var(--font-size-base);">
+                Navigate the complex landscape of higher education. Align personal cognitive strengths with 10+ in-demand disciplines and target premier colleges worldwide.
+              </p>
+              <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                <a href="assessment.html" class="btn btn-primary btn-sm">Launch Quiz Engine &rarr;</a>
+                <a href="explorer.html" class="btn btn-outline btn-sm">Browse 10+ Pathways</a>
+              </div>
+            </div>
+            <div style="font-size: 4rem; user-select: none;">🚀</div>
           </div>
         </div>
 
-        <!-- Bento Cell 2: Live Currency Localization (Span 4) -->
-        <div class="bento-cell bento-stat-card">
-          <div class="badge badge-currency" style="margin-bottom: var(--space-3);">Auto-Geo Localization</div>
-          <div style="font-size: 3rem; font-weight: 800; color: var(--secondary); margin-bottom: var(--space-1);" id="bento-currency-display">
-            Global
-          </div>
-          <h4 style="margin: 0 0 var(--space-2) 0; font-size: var(--font-size-base);">Regional Currency Detection</h4>
-          <p style="font-size: var(--font-size-xs); color: var(--text-secondary); margin: 0;">
-            Salaries and university tuition fees are automatically mapped to your local currency (INR, USD, EUR, GBP, CAD, AUD, SGD, etc.).
-          </p>
-        </div>
-
-        <!-- Bento Cell 3: Global College Network (Span 4) -->
-        <div class="bento-cell">
+        <!-- Feature Card 1: Global College Finder (1/3 Width) -->
+        <div class="card" style="padding: var(--space-6);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
             <span class="badge badge-health">Worldwide Higher Ed</span>
             <span style="font-size: 1.5rem;">🎓</span>
           </div>
           <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">Global College Finder</h3>
-          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
-            Search premier accredited institutions (MIT, Stanford, Oxford, Cambridge, ETH Zurich, IITs, NUS) mapped to required degrees.
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-6); flex: 1;">
+            Search premier accredited institutions (MIT, Stanford, Oxford, Cambridge, ETH Zurich, IITs, NUS) mapped to required degrees, entrance tests, and acceptance rates.
           </p>
           <a href="colleges.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Search Universities &rarr;</a>
         </div>
 
-        <!-- Bento Cell 4: Multi-Vector Math (Span 4) -->
-        <div class="bento-cell">
+        <!-- Feature Card 2: Cosine Matching Engine (1/3 Width) -->
+        <div class="card" style="padding: var(--space-6);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
             <span class="badge badge-eng">Vector Mathematics</span>
             <span style="font-size: 1.5rem;">📐</span>
           </div>
           <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">Cosine Matching Engine</h3>
-          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
-            Evaluates 5 key cognitive vectors (Technology, Research, Engineering, Leadership, Media) to compute compatibility percentages.
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-6); flex: 1;">
+            Evaluates 5 cognitive vectors (Technology, Research, Engineering, Leadership, Media) to compute compatibility percentages without hardcoded biases.
           </p>
           <a href="assessment.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Take Assessment &rarr;</a>
         </div>
 
-        <!-- Bento Cell 5: Client-Side Data Sovereignty (Span 4) -->
-        <div class="bento-cell">
+        <!-- Feature Card 3: Client-Side Data Sovereignty (1/3 Width) -->
+        <div class="card" style="padding: var(--space-6);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
             <span class="badge badge-business">Data Privacy</span>
             <span style="font-size: 1.5rem;">🔒</span>
           </div>
           <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">100% Client-Side Privacy</h3>
-          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
-            Your quiz results, bookmarks, and milestone checklists are isolated in your browser with JSON profile export and import.
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--space-6); flex: 1;">
+            Your quiz results, bookmarks, and milestone checklists are isolated in your browser with JSON profile export and import for complete data sovereignty.
           </p>
           <a href="profile.html" class="btn btn-outline btn-sm" style="align-self: flex-start;">Manage Profile &rarr;</a>
         </div>

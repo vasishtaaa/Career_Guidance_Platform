@@ -1,56 +1,19 @@
 /* ==========================================================================
    CSS Grid Architectural Layout System
-   Advanced Bento Grids, Dual-Column Workspaces, and Adaptive Auto-Fill Grids
+   Symmetric, perfectly-aligned Grid layouts across all screen resolutions
    ========================================================================== */
 
-/* --- 1. Bento Box Grid (Homepage Executive Showcase) --- */
-.bento-grid {
+/* --- 1. Homepage Features Grid (Replaces fragile 12-column bento) --- */
+.features-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
   margin-bottom: var(--space-16);
+  align-items: stretch;
 }
 
-.bento-cell {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-8);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-
-.bento-cell:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--border-color-focus);
-}
-
-.bento-cell-span-12 { grid-column: span 12; }
-.bento-cell-span-8  { grid-column: span 8; }
-.bento-cell-span-6  { grid-column: span 6; }
-.bento-cell-span-4  { grid-column: span 4; }
-.bento-cell-span-3  { grid-column: span 3; }
-
-/* Bento Featured Banner */
-.bento-hero-banner {
-  grid-column: span 8;
-  background: radial-gradient(circle at 100% 0%, var(--primary-subtle), var(--bg-card) 70%);
-  border-color: rgba(37, 99, 235, 0.3);
-}
-
-.bento-stat-card {
-  grid-column: span 4;
-  background: radial-gradient(circle at 0% 100%, var(--secondary-subtle), var(--bg-card) 70%);
-  border-color: rgba(13, 148, 136, 0.3);
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+.feature-card-wide {
+  grid-column: 1 / -1;
 }
 
 /* --- 2. Explorer Dual-Column Layout (Sticky Filter Sidebar + Content Grid) --- */
@@ -64,8 +27,8 @@
 .explorer-sidebar-grid {
   position: sticky;
   top: 6rem;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-5);
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -89,34 +52,24 @@
 }
 
 .roadmap-main-column {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-6);
 }
 
 .roadmap-sidebar-column {
   position: sticky;
   top: 6rem;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-6);
 }
 
 /* --- 4. Colleges Multi-Column Directory Grid --- */
 .colleges-directory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: var(--space-6);
-}
-
-.college-card-internal-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-  background-color: var(--bg-tertiary);
-  padding: var(--space-4);
-  border-radius: var(--radius-lg);
 }
 
 /* --- 5. Assessment Options Card Grid --- */
@@ -127,30 +80,39 @@
   margin-bottom: var(--space-8);
 }
 
-/* --- 6. Responsive Grid Breakpoints --- */
+/* --- 6. Responsive Breakpoints for Grid Systems --- */
 @media (max-width: 1024px) {
-  .bento-cell-span-8 { grid-column: span 12; }
-  .bento-cell-span-4 { grid-column: span 6; }
-  .bento-stat-card { grid-column: span 12; }
-  .explorer-layout-grid { grid-template-columns: 1fr; }
-  .explorer-sidebar-grid { position: static; }
-  .roadmap-split-grid { grid-template-columns: 1fr; }
-  .roadmap-sidebar-column { position: static; }
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .explorer-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .explorer-sidebar-grid {
+    position: static;
+  }
+
+  .roadmap-split-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .roadmap-sidebar-column {
+    position: static;
+  }
 }
 
 @media (max-width: 768px) {
-  .bento-grid {
+  .features-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
   }
-  .bento-cell-span-12,
-  .bento-cell-span-8,
-  .bento-cell-span-6,
-  .bento-cell-span-4,
-  .bento-cell-span-3 {
-    grid-column: span 1;
+
+  .colleges-directory-grid {
+    grid-template-columns: 1fr;
   }
-  .college-card-internal-grid {
+
+  .explorer-cards-grid {
     grid-template-columns: 1fr;
   }
 }
